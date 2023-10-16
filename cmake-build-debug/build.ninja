@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: praticalProject
+# Project: practicalProject
 # Configurations: Debug
 # =============================================================================
 
@@ -39,62 +39,74 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /home/arthur/CLionProjects/praticalProject/cmake-build-debug/
+cmake_ninja_workdir = /home/arthur/CLionProjects/practicalProject/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target praticalProject
+# Object build statements for EXECUTABLE target practicalProject
 
 
 #############################################
-# Order-only phony target for praticalProject
+# Order-only phony target for practicalProject
 
-build cmake_object_order_depends_target_praticalProject: phony || CMakeFiles/praticalProject.dir
+build cmake_object_order_depends_target_practicalProject: phony || CMakeFiles/practicalProject.dir
 
-build CMakeFiles/praticalProject.dir/main.cpp.o: CXX_COMPILER__praticalProject_unscanned_Debug /home/arthur/CLionProjects/praticalProject/main.cpp || cmake_object_order_depends_target_praticalProject
-  DEP_FILE = CMakeFiles/praticalProject.dir/main.cpp.o.d
+build CMakeFiles/practicalProject.dir/main.cpp.o: CXX_COMPILER__practicalProject_unscanned_Debug /home/arthur/CLionProjects/practicalProject/main.cpp || cmake_object_order_depends_target_practicalProject
+  DEP_FILE = CMakeFiles/practicalProject.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles/praticalProject.dir
-  OBJECT_FILE_DIR = CMakeFiles/praticalProject.dir
+  OBJECT_DIR = CMakeFiles/practicalProject.dir
+  OBJECT_FILE_DIR = CMakeFiles/practicalProject.dir
 
-build CMakeFiles/praticalProject.dir/search/search.cpp.o: CXX_COMPILER__praticalProject_unscanned_Debug /home/arthur/CLionProjects/praticalProject/search/search.cpp || cmake_object_order_depends_target_praticalProject
-  DEP_FILE = CMakeFiles/praticalProject.dir/search/search.cpp.o.d
+build CMakeFiles/practicalProject.dir/search/search.cpp.o: CXX_COMPILER__practicalProject_unscanned_Debug /home/arthur/CLionProjects/practicalProject/search/search.cpp || cmake_object_order_depends_target_practicalProject
+  DEP_FILE = CMakeFiles/practicalProject.dir/search/search.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles/praticalProject.dir
-  OBJECT_FILE_DIR = CMakeFiles/praticalProject.dir/search
+  OBJECT_DIR = CMakeFiles/practicalProject.dir
+  OBJECT_FILE_DIR = CMakeFiles/practicalProject.dir/search
 
-build CMakeFiles/praticalProject.dir/Employee/Employee.cpp.o: CXX_COMPILER__praticalProject_unscanned_Debug /home/arthur/CLionProjects/praticalProject/Employee/Employee.cpp || cmake_object_order_depends_target_praticalProject
-  DEP_FILE = CMakeFiles/praticalProject.dir/Employee/Employee.cpp.o.d
+build CMakeFiles/practicalProject.dir/Employee/Employee.cpp.o: CXX_COMPILER__practicalProject_unscanned_Debug /home/arthur/CLionProjects/practicalProject/Employee/Employee.cpp || cmake_object_order_depends_target_practicalProject
+  DEP_FILE = CMakeFiles/practicalProject.dir/Employee/Employee.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles/praticalProject.dir
-  OBJECT_FILE_DIR = CMakeFiles/praticalProject.dir/Employee
+  OBJECT_DIR = CMakeFiles/practicalProject.dir
+  OBJECT_FILE_DIR = CMakeFiles/practicalProject.dir/Employee
 
-build CMakeFiles/praticalProject.dir/DynamicArray/DynamicArray.cpp.o: CXX_COMPILER__praticalProject_unscanned_Debug /home/arthur/CLionProjects/praticalProject/DynamicArray/DynamicArray.cpp || cmake_object_order_depends_target_praticalProject
-  DEP_FILE = CMakeFiles/praticalProject.dir/DynamicArray/DynamicArray.cpp.o.d
+build CMakeFiles/practicalProject.dir/fileSystem/fileSystem.cpp.o: CXX_COMPILER__practicalProject_unscanned_Debug /home/arthur/CLionProjects/practicalProject/fileSystem/fileSystem.cpp || cmake_object_order_depends_target_practicalProject
+  DEP_FILE = CMakeFiles/practicalProject.dir/fileSystem/fileSystem.cpp.o.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles/praticalProject.dir
-  OBJECT_FILE_DIR = CMakeFiles/praticalProject.dir/DynamicArray
+  OBJECT_DIR = CMakeFiles/practicalProject.dir
+  OBJECT_FILE_DIR = CMakeFiles/practicalProject.dir/fileSystem
+
+build CMakeFiles/practicalProject.dir/fileStream/FileStream.cpp.o: CXX_COMPILER__practicalProject_unscanned_Debug /home/arthur/CLionProjects/practicalProject/fileStream/FileStream.cpp || cmake_object_order_depends_target_practicalProject
+  DEP_FILE = CMakeFiles/practicalProject.dir/fileStream/FileStream.cpp.o.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/practicalProject.dir
+  OBJECT_FILE_DIR = CMakeFiles/practicalProject.dir/fileStream
+
+build CMakeFiles/practicalProject.dir/employeeCLI/EmployeeCli.cpp.o: CXX_COMPILER__practicalProject_unscanned_Debug /home/arthur/CLionProjects/practicalProject/employeeCLI/EmployeeCli.cpp || cmake_object_order_depends_target_practicalProject
+  DEP_FILE = CMakeFiles/practicalProject.dir/employeeCLI/EmployeeCli.cpp.o.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/practicalProject.dir
+  OBJECT_FILE_DIR = CMakeFiles/practicalProject.dir/employeeCLI
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target praticalProject
+# Link build statements for EXECUTABLE target practicalProject
 
 
 #############################################
-# Link the executable praticalProject
+# Link the executable practicalProject
 
-build praticalProject: CXX_EXECUTABLE_LINKER__praticalProject_Debug CMakeFiles/praticalProject.dir/main.cpp.o CMakeFiles/praticalProject.dir/search/search.cpp.o CMakeFiles/praticalProject.dir/Employee/Employee.cpp.o CMakeFiles/praticalProject.dir/DynamicArray/DynamicArray.cpp.o
+build practicalProject: CXX_EXECUTABLE_LINKER__practicalProject_Debug CMakeFiles/practicalProject.dir/main.cpp.o CMakeFiles/practicalProject.dir/search/search.cpp.o CMakeFiles/practicalProject.dir/Employee/Employee.cpp.o CMakeFiles/practicalProject.dir/fileSystem/fileSystem.cpp.o CMakeFiles/practicalProject.dir/fileStream/FileStream.cpp.o CMakeFiles/practicalProject.dir/employeeCLI/EmployeeCli.cpp.o
   FLAGS = -g
-  OBJECT_DIR = CMakeFiles/praticalProject.dir
+  OBJECT_DIR = CMakeFiles/practicalProject.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = praticalProject
-  TARGET_PDB = praticalProject.dbg
+  TARGET_FILE = practicalProject
+  TARGET_PDB = practicalProject.dbg
 
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/arthur/CLionProjects/praticalProject/cmake-build-debug && /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /home/arthur/CLionProjects/practicalProject/cmake-build-debug && /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -105,7 +117,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/arthur/CLionProjects/praticalProject/cmake-build-debug && /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/arthur/CLionProjects/praticalProject -B/home/arthur/CLionProjects/praticalProject/cmake-build-debug
+  COMMAND = cd /home/arthur/CLionProjects/practicalProject/cmake-build-debug && /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/arthur/CLionProjects/practicalProject -B/home/arthur/CLionProjects/practicalProject/cmake-build-debug
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -121,9 +133,9 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 #############################################
-# Folder: /home/arthur/CLionProjects/praticalProject/cmake-build-debug
+# Folder: /home/arthur/CLionProjects/practicalProject/cmake-build-debug
 
-build all: phony praticalProject
+build all: phony practicalProject
 
 # =============================================================================
 # Built-in targets
@@ -132,14 +144,14 @@ build all: phony praticalProject
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-C.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-CXX.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /home/arthur/CLionProjects/praticalProject/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-C.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-CXX.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /home/arthur/CLionProjects/practicalProject/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-C.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-CXX.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /home/arthur/CLionProjects/praticalProject/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake: phony
+build /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-C.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-CXX.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux.cmake /home/arthur/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /home/arthur/CLionProjects/practicalProject/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake: phony
 
 
 #############################################

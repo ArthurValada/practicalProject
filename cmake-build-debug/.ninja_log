@@ -1,6 +1,7 @@
 # ninja log v5
-7	1253	1696878872566524086	CMakeFiles/praticalProject.dir/Employee/Employee.cpp.o	8a4fb680d034d25
-0	68	1696893441652711047	build.ninja	fcbc828d7801909c
-1	996	1696879424256070740	CMakeFiles/praticalProject.dir/search/search.cpp.o	f298a6eca004f689
-1	37	1696879423296062743	CMakeFiles/praticalProject.dir/main.cpp.o	69cddbc96855e19b
-2	25	1696879423284062642	CMakeFiles/praticalProject.dir/DynamicArray/DynamicArray.cpp.o	22b48be7d333c671
+4	1590	1697470596007832565	CMakeFiles/practicalProject.dir/main.cpp.o	11dda68f8d378c42
+0	34	1697471621620610347	build.ninja	739263f0d1645ed5
+1	2088	1697462795634633523	CMakeFiles/practicalProject.dir/fileSystem/fileSystem.cpp.o	c1ac11d9e15987d0
+4	1349	1697470595763832041	CMakeFiles/practicalProject.dir/Employee/Employee.cpp.o	cfcf0183343cde84
+4	1476	1697470595891832316	CMakeFiles/practicalProject.dir/search/search.cpp.o	f281b14f1821370d
+1591	1740	1697470596155832882	practicalProject	294670c58841bdaa
