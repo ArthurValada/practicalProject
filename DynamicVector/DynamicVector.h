@@ -1,0 +1,132 @@
+//
+// Created by arthur on 17/10/23.
+//
+
+#ifndef PRACTICALPROJECT_DYNAMICVECTOR_H
+#define PRACTICALPROJECT_DYNAMICVECTOR_H
+
+#include <cstdlib>
+#include <initializer_list>
+#include <iterator>
+
+template<class T>
+class DynamicVector {
+private:
+    T *_data;
+    std::size_t _size;
+    std::size_t _capacity;
+
+    void _grow() {
+        std::size_t newCapacity = _capacity * 2;
+        T *newData = new T[newCapacity];
+
+        for (auto i = 0; i < _size; i++) {
+            newData[i] = _data[i];
+        }
+
+        delete[] _data;
+
+        _data = newData;
+
+    }
+
+    void _shrink() {
+        _capacity = _size;
+
+        T *newData = new T[_size];
+
+        for (auto i = 0; i < _size; i++) {
+            newData[i] = _data[i];
+        }
+
+        delete[] _data;
+
+        _data = newData;
+    }
+
+public:
+
+    struct Iterator {
+        using iterator_category = std::forward_iterator_tag;
+        using difference_type = std::ptrdiff_t;
+        using value_type = int;
+
+        explicit Iterator(T *ptr) : m_ptr(ptr) {}
+
+        T &operator*() const { return *m_ptr; }
+
+        T *operator->() { return m_ptr; }
+
+        Iterator &operator++() {
+            m_ptr++;
+            return *this;
+        }
+
+        Iterator operator++(int) {
+            Iterator tmp = *this;
+            ++(*this);
+            return tmp;
+        }
+
+        friend bool operator==(const Iterator &a, const Iterator &b) { return a.m_ptr == b.m_ptr; };
+
+        friend bool operator!=(const Iterator &a, const Iterator &b) { return a.m_ptr != b.m_ptr; };
+
+    private:
+        T *m_ptr;
+    };
+
+    DynamicVector() : _data(nullptr), _size(0), _capacity(0) {}
+
+    explicit DynamicVector(std::size_t capacity) : _data(new T[capacity]), _size(capacity), _capacity(capacity) {}
+
+    DynamicVector(const std::initializer_list<T> &data) : _size(data.size()), _capacity(data.size()),
+                                                          _data(new T[_size]) {
+
+        int _currentIndex = 0;
+
+        for (const auto &element: data) {
+            _data[_currentIndex] = element;
+            _currentIndex++;
+        }
+    }
+
+    ~DynamicVector() {
+        delete[] _data;
+    }
+
+    [[nodiscard]] std::size_t getCapacity() {
+        return this->_capacity;
+    }
+
+    [[nodiscard]] const std::size_t &getCapacity() const {
+        return this->_capacity;
+    }
+
+    [[nodiscard]] std::size_t getSize() {
+        return this->_size;
+    }
+
+    [[nodiscard]] const std::size_t &getSize() const {
+        return this->_size;
+    }
+
+    void push_back(T value) {
+        if (_size >= _capacity) {
+            _grow();
+        }
+
+        _data[_size] = value;
+        _size++;
+    }
+
+    Iterator begin() {
+        return Iterator(&_data[0]);
+    }
+
+    Iterator end() {
+        return Iterator(&_data[_size]);
+    }
+};
+
+#endif //PRACTICALPROJECT_DYNAMICVECTOR_H

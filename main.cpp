@@ -1,32 +1,16 @@
 #include <iostream>
-#include <fstream>
 
-#include "./search/search.h"
-#include "./Employee/Employee.h"
+#include "./DynamicVector/DynamicVector.h"
 
 int main(int argc, char* argv[]) {
 
-    const char* fileName = "./output.txt";
+    auto sla = DynamicVector({1,2,3,4});
 
-    std::ofstream outputFile(fileName);
+    sla.push_back(3);
 
-        Employee employees[] = {
-                Employee(1, "Arthur", 20.0),
-                Employee(2,"Felipe", 100.0)
-        };
-
-        Employee::saveAll(outputFile, employees);
-
-    outputFile.close();
-
-
-    std::ifstream inputFile(fileName);
-
-
-
-    inputFile.close();
-
-
+    for(auto element : sla){
+        std::cout<<element<<std::endl;
+    }
 
     return 0;
 }

@@ -1,7 +1,0 @@
-# ninja log v5
-4	1590	1697470596007832565	CMakeFiles/practicalProject.dir/main.cpp.o	11dda68f8d378c42
-0	34	1697471621620610347	build.ninja	739263f0d1645ed5
-1	2088	1697462795634633523	CMakeFiles/practicalProject.dir/fileSystem/fileSystem.cpp.o	c1ac11d9e15987d0
-4	1349	1697470595763832041	CMakeFiles/practicalProject.dir/Employee/Employee.cpp.o	cfcf0183343cde84
-4	1476	1697470595891832316	CMakeFiles/practicalProject.dir/search/search.cpp.o	f281b14f1821370d
-1591	1740	1697470596155832882	practicalProject	294670c58841bdaa

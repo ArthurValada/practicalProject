@@ -1,2 +1,0 @@
-1	Arthur	20
-2	Felipe	100
