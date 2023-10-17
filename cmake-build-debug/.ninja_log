@@ -1,0 +1,10 @@
+# ninja log v5
+1	757	1697559194311872500	CMakeFiles/practicalProject.dir/main.cpp.o	11dda68f8d378c42
+0	31	1697560239145340379	build.ninja	739263f0d1645ed5
+1	46	1697557891272049877	CMakeFiles/practicalProject.dir/DynamicVector/DynamicVector.cpp.o	81c55a733da1df43
+757	868	1697559194419880320	practicalProject	ad7ee116a63db11d
+1	1870	1697564810874527379	CMakeFiles/practicalProject.dir/main.cpp.o	11dda68f8d378c42
+2	2293	1697564932324242600	CMakeFiles/practicalProject.dir/fileSystem/fileSystem.cpp.o	c1ac11d9e15987d0
+2293	2446	1697564932476244592	practicalProject	b3dad296710d9561
+1	1723	1697564962624632759	CMakeFiles/practicalProject.dir/main.cpp.o	11dda68f8d378c42
+1724	1863	1697564962764634531	practicalProject	b3dad296710d9561
