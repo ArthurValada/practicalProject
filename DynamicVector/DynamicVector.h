@@ -120,11 +120,41 @@ public:
         _size++;
     }
 
+    void push(T value){
+        if(_size>=_capacity){
+            _grow();
+        }
+
+        for(auto i = _size;i>0;i--){
+            _data[i] = _data[i-1];
+        }
+
+        _data[0] = value;
+
+        _size++;
+    }
+
+    void remove_at(std::size_t index){
+        for(auto i = index;i<_size-1;i++){
+            _data[i]=_data[i+1];
+        }
+        _size--;
+        _shrink();
+    }
+
     Iterator begin() {
         return Iterator(&_data[0]);
     }
 
+    Iterator begin() const {
+        return Iterator(&_data[0]);
+    }
+
     Iterator end() {
+        return Iterator(&_data[_size]);
+    }
+
+    Iterator end() const {
         return Iterator(&_data[_size]);
     }
 };

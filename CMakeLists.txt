@@ -5,7 +5,10 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(
         practicalProject main.cpp
+
         DynamicVector/DynamicVector.h
+
         fileSystem/fileSystem.h
         fileSystem/fileSystem.cpp
+        fileSystem/InterfaceCli/FileSystemCli.h
 )

@@ -86,15 +86,12 @@ void FileSystem::createFile(const std::filesystem::path &&path, const std::strin
     createFile(path/name);
 }
 
-std::fstream &FileSystem::openFile(const std::filesystem::path &path) {
-    static std::fstream file(path.c_str());
-    return file;
+std::basic_fstream<char>FileSystem::openFile(const std::filesystem::path &path) {
+    return {path};
 }
 
-std::fstream &FileSystem::openFile(const std::filesystem::path &&path) {
-    static std::fstream  file(path.c_str());
-
-    return file;
+std::basic_fstream<char> FileSystem::openFile(const std::filesystem::path &&path) {
+    return {path};
 }
 
 

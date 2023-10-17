@@ -41,8 +41,8 @@ namespace FileSystem{
     void createFile(const std::filesystem::path& path, const std::string& name);
     void createFile(const std::filesystem::path&& path, const std::string& name);
 
-    std::fstream& openFile(const std::filesystem::path& path);
-    std::fstream& openFile(const std::filesystem::path&& path);
+    std::basic_fstream<char> openFile(const std::filesystem::path& path);
+    std::basic_fstream<char> openFile(const std::filesystem::path&& path);
 
     void deleteFile(const std::filesystem::path& path);
     void deleteFile(const std::filesystem::path&& path);
