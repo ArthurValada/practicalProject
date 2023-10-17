@@ -1,12 +1,18 @@
 cmake_minimum_required(VERSION 3.26)
-project(praticalProject)
+project(practicalProject)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(praticalProject main.cpp
-        search/search.cpp
+add_executable(
+        practicalProject main.cpp
         search/search.h
-        Employee/Employee.cpp
+        search/search.cpp
         Employee/Employee.h
-        DynamicArray/DynamicArray.cpp
-        DynamicArray/DynamicArray.h)
+        Employee/Employee.cpp
+        fileSystem/fileSystem.h
+        fileSystem/fileSystem.cpp
+        fileStream/FileStream.h
+        fileStream/FileStream.cpp
+        employeeCLI/EmployeeCli.h
+        employeeCLI/EmployeeCli.cpp
+)
