@@ -1,0 +1,8 @@
+//
+// Created by arthur on 09/11/23.
+//
+
+#ifndef PRACTICALPROJECT_HELPERS_H
+#define PRACTICALPROJECT_HELPERS_H
+
+#endif //PRACTICALPROJECT_HELPERS_H
