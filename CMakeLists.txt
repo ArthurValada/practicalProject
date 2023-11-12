@@ -8,7 +8,17 @@ add_executable(
 
         DynamicVector/DynamicVector.h
 
-        fileSystem/fileSystem.h
-        fileSystem/fileSystem.cpp
-        fileSystem/InterfaceCli/FileSystemCli.h
+        Models/ContentModel.h
+
+        Models/PlantModel/PlantModel.h
+        Models/PlantModel/PlantModel.cpp
+
+        Actions/Actions.h
+        Actions/Actions.cpp
+
+        CliInterface/Cli.h
+        CliInterface/Cli.cpp
+
+        Helpers/Helpers.h
+        Helpers/Helpers.cpp
 )

@@ -2,32 +2,53 @@
 // Created by arthur on 06/11/23.
 //
 
-#ifndef PRACTICALPROJECT_COMMANDS_H
-#define PRACTICALPROJECT_COMMANDS_H
+#ifndef PRACTICALPROJECT_CLI_H
+#define PRACTICALPROJECT_CLI_H
 
 #include <initializer_list>
 #include <utility>
 #include <string>
 #include <functional>
 #include <iostream>
+#include <cstring>
+#include <map>
 
-namespace Commands{
-    void menu(int argc, int* argv[]){
+#include "../Actions/Actions.h"
 
-        bool isContentLoaded = false;
+namespace Cli{
+    [[maybe_unused]] DynamicVector<PlantModel> load();
 
-        std::pair<std::string, std::function<void(char*)>> options[] = {
-                {
-                    "load",
-                    [](char* _) {
+    [[maybe_unused]] void save(const DynamicVector<PlantModel>& plants);
 
-                    }
-                }
-        };
+    [[maybe_unused]] PlantModel* findById(const DynamicVector<PlantModel> &plants);
+
+    [[maybe_unused]] PlantModel* findByName(const DynamicVector<PlantModel>& plants);
+
+    [[maybe_unused]] PlantModel* findByDescription(const DynamicVector<PlantModel>& plants);
+
+    [[maybe_unused]] PlantModel* findByScientificName(const DynamicVector<PlantModel>& plants);
+
+    [[maybe_unused]] PlantModel* findByFamily(const DynamicVector<PlantModel>& plants);
+
+    [[maybe_unused]] PlantModel* findByRegionOfOrigin(const DynamicVector<PlantModel>& plants);
+
+    PlantModel* find(const DynamicVector<PlantModel>& plants);
 
 
+    [[maybe_unused]] void alterPlantName(const DynamicVector<PlantModel>& plants);
 
-    }
+    [[maybe_unused]] void alterPlantDescription(const DynamicVector<PlantModel>& plants);
+
+    [[maybe_unused]] void alterPlantScientificName(const DynamicVector<PlantModel>& plants);
+
+    [[maybe_unused]] void alterPlantFamily(const DynamicVector<PlantModel>& plants);
+
+    [[maybe_unused]] void alterPlantRegionOfOrigin(const DynamicVector<PlantModel>& plants);
+
+    [[maybe_unused]] void alter(const DynamicVector<PlantModel>& plants);
+
+
+    [[maybe_unused]] void menu();
 }
 
-#endif //PRACTICALPROJECT_COMMANDS_H
+#endif //PRACTICALPROJECT_CLI_H

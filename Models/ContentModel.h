@@ -7,14 +7,14 @@
 
 #include <filesystem>
 
-#include "DynamicVector/DynamicVector.h"
+#include "../DynamicVector/DynamicVector.h"
 
 template<class T>
 class ContentModel{
 public:
-    static T load(std::ifstream&) = 0;
+    static T loadFromCsv(std::ifstream&);
 
-    void save(std::ofstream&) = 0;
+    virtual void saveInCsv(std::ofstream&) = 0;
 };
 
 #endif //PRACTICALPROJECT_CONTENTMODEL_H

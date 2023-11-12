@@ -17,17 +17,26 @@ private:
     std::size_t _capacity;
 
     void _grow() {
-        std::size_t newCapacity = _capacity * 2;
+        std::size_t newCapacity;
+        if(_capacity!=0){
+            newCapacity = _capacity * 2;
+        }
+        else{
+            newCapacity = 2;
+        }
         T *newData = new T[newCapacity];
 
-        for (auto i = 0; i < _size; i++) {
-            newData[i] = _data[i];
+        if(_capacity!=0){
+            if(_size!=0){
+                for (auto i = 0; i <= _size; i++) {
+                    newData[i] = _data[i];
+                }
+            }
+            delete[] _data;
         }
 
-        delete[] _data;
-
         _data = newData;
-
+        _capacity=newCapacity;
     }
 
     void _shrink() {
@@ -47,9 +56,6 @@ private:
 public:
 
     struct Iterator {
-        using iterator_category = std::forward_iterator_tag;
-        using difference_type = std::ptrdiff_t;
-        using value_type = int;
 
         explicit Iterator(T *ptr) : m_ptr(ptr) {}
 
@@ -80,8 +86,9 @@ public:
 
     explicit DynamicVector(std::size_t capacity) : _data(new T[capacity]), _size(capacity), _capacity(capacity) {}
 
-    DynamicVector(const std::initializer_list<T> &data) : _size(data.size()), _capacity(data.size()),
-                                                          _data(new T[_size]) {
+    DynamicVector(const std::initializer_list<T> &data) : _size(data.size()), _capacity(data.size()),_data{} {
+
+        _data = new T[_size];
 
         int _currentIndex = 0;
 
@@ -89,10 +96,6 @@ public:
             _data[_currentIndex] = element;
             _currentIndex++;
         }
-    }
-
-    ~DynamicVector() {
-        delete[] _data;
     }
 
     [[nodiscard]] std::size_t getCapacity() {
@@ -112,7 +115,7 @@ public:
     }
 
     void push_back(T value) {
-        if (_size >= _capacity) {
+        if (_size + 1 == _capacity or _size == _capacity) {
             _grow();
         }
 

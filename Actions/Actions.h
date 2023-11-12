@@ -11,13 +11,15 @@
 
 namespace Actions{
 
-
     void _goAhead(PlantModel* plant, const std::function<void(PlantModel*)>& pFunction);
 
-    [[maybe_unused]] DynamicVector<PlantModel> load(std::ifstream& file);
+    [[maybe_unused]] DynamicVector<PlantModel> loadFromCsv(std::ifstream& file);
+    [[maybe_unused]] DynamicVector<PlantModel> loadFromCsv(const std::filesystem::path&);
 
 
-    [[maybe_unused]] void save(const DynamicVector<PlantModel>& plants, std::ofstream& file);
+    [[maybe_unused]] void saveInCsv(const DynamicVector<PlantModel>& plants, std::ofstream& file);
+
+    [[maybe_unused]] void saveInCsv(const DynamicVector<PlantModel>& plants,const std::filesystem::path& filePath);
 
     [[maybe_unused]] PlantModel* findById(const DynamicVector<PlantModel>& plants, int id);
 

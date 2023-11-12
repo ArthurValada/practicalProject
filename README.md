@@ -1,1 +1,4 @@
-# praticalProject
+# Pratical Project
+
+## Contextualização
+## Como 

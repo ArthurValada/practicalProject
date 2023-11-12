@@ -1,8 +1,10 @@
 //
-// Created by arthur on 06/11/23.
-//
 
 #include "Actions.h"
+#include "../Helpers/Helpers.h"
+
+//
+// Created by arthur on 06/11/23.
 
 void Actions::_goAhead(PlantModel *plant, const std::function<void(PlantModel *)> &pFunction) {
     if(plant != nullptr){
@@ -13,12 +15,12 @@ void Actions::_goAhead(PlantModel *plant, const std::function<void(PlantModel *)
     }
 }
 
-DynamicVector<PlantModel> Actions::load(std::ifstream &file) {
+DynamicVector<PlantModel> Actions::loadFromCsv(std::ifstream &file) {
     DynamicVector<PlantModel> plants = DynamicVector<PlantModel>();
 
     bool shouldStop = false;
     while(not shouldStop){
-        PlantModel plant = PlantModel::load(file);
+        PlantModel plant = PlantModel::loadFromCsv(file);
         if(plant != PlantModel()){
             plants.push_back(plant);
         }
@@ -30,10 +32,10 @@ DynamicVector<PlantModel> Actions::load(std::ifstream &file) {
     return plants;
 }
 
-void Actions::save(const DynamicVector<PlantModel> &plants, std::ofstream &file) {
+void Actions::saveInCsv(const DynamicVector<PlantModel> &plants, std::ofstream &file) {
     if(file.good()){
-        for(auto element : plants){
-            element.save(file);
+        for(PlantModel& element : plants){
+            element.saveInCsv(file);
         }
     }
 }
@@ -124,3 +126,45 @@ void Actions::alterScientificName(PlantModel *plant, const std::string &scientif
         plant->setRegionOfOrigin(scientificName);
     });
 }
+
+DynamicVector<PlantModel> Actions::loadFromCsv(const std::filesystem::path& path) {
+
+    DynamicVector content = DynamicVector<PlantModel>();
+
+    Helpers::_goAheadIfPathIsValid(path, [&content](const std::filesystem::path &path) {
+        std::ifstream file(path);
+
+        bool shouldStop = false;
+
+        while(not shouldStop){
+            auto element = PlantModel::loadFromCsv(file);
+            if(element!=PlantModel()){
+                content.push_back(element);
+            }
+            else{
+                shouldStop = true;
+                if(content.getSize()==0){
+                    throw std::invalid_argument("The file does not contains a PlantModel in CSV.");
+                }
+            }
+        }
+
+        file.close();
+    });
+
+    return content;
+}
+
+void Actions::saveInCsv(const DynamicVector<PlantModel> &plants, const std::filesystem::path& filePath) {
+    if(exists(filePath.parent_path()) and not exists(filePath) and filePath.extension() == ".csv"){
+        std::ofstream file(filePath);
+
+        saveInCsv(plants, file);
+
+        file.close();
+    }
+    else{
+        throw std::invalid_argument("The path is invalid.");
+    }
+}
+
