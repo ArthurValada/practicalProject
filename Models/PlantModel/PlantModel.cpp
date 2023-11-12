@@ -25,9 +25,9 @@ PlantModel PlantModel::loadFromCsv(std::ifstream &file) {
 
     int id;
     std::string name;
+    std::string scientificName;
     std::string family;
     std::string regionOfOrigin;
-    std::string scientificName;
     std::string description;
 
     char trash;
@@ -38,14 +38,14 @@ PlantModel PlantModel::loadFromCsv(std::ifstream &file) {
         std::getline(file, name, ',');
 
         file>>trash;
-        std::getline(file, family, '\'');
-        file>>trash;
-
-        std::getline(file, regionOfOrigin, ',');
-        file>>trash;
-
         std::getline(file, scientificName, '\'');
+        file>>trash;
+
+        std::getline(file, family, ',');
         file >> trash;
+
+        std::getline(file, regionOfOrigin, '\'');
+        file>>trash;
 
         file>>trash;
         std::getline(file, description, '\'');
