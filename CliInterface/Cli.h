@@ -20,29 +20,21 @@ namespace Cli{
 
     [[maybe_unused]] void save(const DynamicVector<PlantModel>& plants);
 
+
     [[maybe_unused]] PlantModel* findById(const DynamicVector<PlantModel> &plants);
-
     [[maybe_unused]] PlantModel* findByName(const DynamicVector<PlantModel>& plants);
-
     [[maybe_unused]] PlantModel* findByDescription(const DynamicVector<PlantModel>& plants);
-
     [[maybe_unused]] PlantModel* findByScientificName(const DynamicVector<PlantModel>& plants);
-
     [[maybe_unused]] PlantModel* findByFamily(const DynamicVector<PlantModel>& plants);
-
     [[maybe_unused]] PlantModel* findByRegionOfOrigin(const DynamicVector<PlantModel>& plants);
 
     PlantModel* find(const DynamicVector<PlantModel>& plants);
 
 
     [[maybe_unused]] void alterPlantName(const DynamicVector<PlantModel>& plants);
-
     [[maybe_unused]] void alterPlantDescription(const DynamicVector<PlantModel>& plants);
-
     [[maybe_unused]] void alterPlantScientificName(const DynamicVector<PlantModel>& plants);
-
     [[maybe_unused]] void alterPlantFamily(const DynamicVector<PlantModel>& plants);
-
     [[maybe_unused]] void alterPlantRegionOfOrigin(const DynamicVector<PlantModel>& plants);
 
     [[maybe_unused]] void alter(const DynamicVector<PlantModel>& plants);

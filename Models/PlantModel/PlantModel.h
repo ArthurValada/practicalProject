@@ -10,6 +10,7 @@
 #include <iostream>
 
 #include "../ContentModel.h"
+#include "../../Data/Plant/PlantData.h"
 
 class PlantModel : ContentModel<PlantModel> {
 
@@ -28,36 +29,35 @@ public:
 
     PlantModel() = default;
 
-    static PlantModel loadFromCsv(std::ifstream &file);
 
+    static PlantModel loadFromCsv(std::ifstream &file);
     void saveInCsv(std::ofstream &file) override ;
 
+    static PlantModel loadFromBinary(std::ifstream &file);
+    void saveInBinary(std::ofstream &file) const ;
+
+
     [[nodiscard]] int getId() const;
-
     [[nodiscard]] std::string getName() const;
-
     [[nodiscard]] std::string getFamily() const;
-
     [[nodiscard]] std::string getRegionOfOrigin() const;
-
     [[nodiscard]] std::string getScientificName() const;
-
     [[nodiscard]] std::string getDescription() const;
 
 
     void setName(std::string newName);
-
     void setFamily(std::string family);
-
     void setRegionOfOrigin(std::string regionOfOrigin);
-
     void setScientificName(std::string scientificName);
-
     void setDescription(std::string description);
 
+    [[nodiscard]] PlantData toPlantData() const {
+        return {_id, _name,_family,_scientificName,_regionOfOrigin,_description};
+    }
+
+    static PlantModel fromPlantData(const PlantData& plantData);
 
     bool operator==(const PlantModel& other) const;
-
     void show() const;
 
 };

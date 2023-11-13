@@ -16,32 +16,37 @@ namespace Actions{
     [[maybe_unused]] DynamicVector<PlantModel> loadFromCsv(std::ifstream& file);
     [[maybe_unused]] DynamicVector<PlantModel> loadFromCsv(const std::filesystem::path&);
 
-
     [[maybe_unused]] void saveInCsv(const DynamicVector<PlantModel>& plants, std::ofstream& file);
-
     [[maybe_unused]] void saveInCsv(const DynamicVector<PlantModel>& plants,const std::filesystem::path& filePath);
+
+
+    [[maybe_unused]] DynamicVector<PlantModel> loadFromBinary(std::ifstream& file);
+    [[maybe_unused]] DynamicVector<PlantModel> loadFromBinary(const std::filesystem::path& path);
+
+    [[maybe_unused]] void saveInBinary(const DynamicVector<PlantModel>& plants, std::ofstream& file);
+    [[maybe_unused]] void saveInBinary(const DynamicVector<PlantModel>& plants, const std::filesystem::path& path);
+
 
     [[maybe_unused]] PlantModel* findById(const DynamicVector<PlantModel>& plants, int id);
 
 
     [[maybe_unused]] PlantModel* findByName(const DynamicVector<PlantModel>& plants, const std::string& name);
-
     [[maybe_unused]] void alterName(PlantModel* plant, const std::string& name);
 
-    [[maybe_unused]] PlantModel* findByDescription(const DynamicVector<PlantModel>& plants, const std::string& description);
 
+    [[maybe_unused]] PlantModel* findByDescription(const DynamicVector<PlantModel>& plants, const std::string& description);
     [[maybe_unused]] void alterDescription(PlantModel* plant, const std::string& description);
 
-    [[maybe_unused]] PlantModel* findByRegionOfOrigin(const DynamicVector<PlantModel>& plants, const std::string& regionOfOrigin);
 
+    [[maybe_unused]] PlantModel* findByRegionOfOrigin(const DynamicVector<PlantModel>& plants, const std::string& regionOfOrigin);
     [[maybe_unused]] void alterRegionOfOrigin(PlantModel* plant, const std::string& regionOfOrigin);
 
-    [[maybe_unused]] PlantModel* findByFamily(const DynamicVector<PlantModel>& plants, const std::string& family);
 
+    [[maybe_unused]] PlantModel* findByFamily(const DynamicVector<PlantModel>& plants, const std::string& family);
     [[maybe_unused]] void alterFamily(PlantModel* plant, const std::string& family);
 
-    [[maybe_unused]] PlantModel* findByScientificName(const DynamicVector<PlantModel>& plants, const std::string& scientificName);
 
+    [[maybe_unused]] PlantModel* findByScientificName(const DynamicVector<PlantModel>& plants, const std::string& scientificName);
     [[maybe_unused]] void alterScientificName(PlantModel* plant, const std::string& scientificName);
 }
 

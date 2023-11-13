@@ -97,15 +97,19 @@
 
     std::filesystem::path filePath;
 
-    std::cout<<"Informe o caminho com o nome do arquivo e a extensão em CSV (.csv) do arquivo no qual deseja salvar as alterações:";
+    std::cout<<"Informe o caminho com o nome do arquivo no qual deseja salvar as alterações:";
     std::cin>>filePath;
 
-
-    try {
-        Actions::saveInCsv(plants, filePath);
+    if(filePath.has_extension()){
+        try {
+            Actions::saveInCsv(plants, filePath);
+        }
+        catch (const std::invalid_argument &_) {
+            std::cerr << "Caminho inválido." << std::endl;
+        }
     }
-    catch (const std::invalid_argument& _){
-        std::cerr<<"Caminho inválido."<<std::endl;
+    else{
+        Actions::saveInBinary(plants, filePath);
     }
 }
 
@@ -171,12 +175,16 @@
 
     std::cout<<"Informe o caminho do arquivo do qual os dados serão carregados:";
     std::cin>>filePath;
-
-    try{
-        return Actions::loadFromCsv(filePath);
+    if(filePath.has_extension()){
+        try {
+            return Actions::loadFromCsv(filePath);
+        }
+        catch (const std::invalid_argument &_) {
+            std::cerr << "O caminho é inválido." << std::endl;
+        }
     }
-    catch (const std::invalid_argument& _){
-        std::cerr<<"O caminho é inválido."<<std::endl;
+    else{
+        return Actions::loadFromBinary(filePath);
     }
     return {};
 }

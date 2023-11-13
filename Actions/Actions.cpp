@@ -168,3 +168,45 @@ void Actions::saveInCsv(const DynamicVector<PlantModel> &plants, const std::file
     }
 }
 
+DynamicVector<PlantModel> Actions::loadFromBinary(std::ifstream &file) {
+
+    DynamicVector<PlantModel> content = {};
+
+    bool shouldStop = false;
+
+    while(not shouldStop){
+
+        PlantModel plantModel = PlantModel::loadFromBinary(file);
+        if(plantModel!=PlantModel()){
+            content.push_back(plantModel);
+        }
+        else{
+            shouldStop = true;
+        }
+    }
+
+    return content;
+}
+
+DynamicVector<PlantModel> Actions::loadFromBinary(const std::filesystem::path &path) {
+
+    std::ifstream file(path);
+    auto content = Actions::loadFromBinary(file);
+    file.close();
+
+    return content;
+}
+
+void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, std::ofstream &file) {
+    for(PlantModel& plant : plants){
+        plant.saveInBinary(file);
+    }
+}
+
+void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, const std::filesystem::path &path) {
+    std::ofstream file(path);
+    for(PlantModel& plant : plants){
+        plant.saveInBinary(file);
+    }
+    file.close();
+}
