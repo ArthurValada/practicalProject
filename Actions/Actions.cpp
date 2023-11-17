@@ -170,43 +170,34 @@ void Actions::saveInCsv(const DynamicVector<PlantModel> &plants, const std::file
 
 DynamicVector<PlantModel> Actions::loadFromBinary(std::ifstream &file) {
 
-    DynamicVector<PlantModel> content = {};
+    file.seekg(0,std::ifstream::end);
+    auto quantity = file.tellg();
+    auto size = quantity / sizeof(PlantModel);
 
-    bool shouldStop = false;
+    auto* plants = new PlantModel[size];
 
-    while(not shouldStop){
+    file.seekg(0, std::ifstream::beg);
 
-        PlantModel plantModel = PlantModel::loadFromBinary(file);
-        if(plantModel!=PlantModel()){
-            content.push_back(plantModel);
-        }
-        else{
-            shouldStop = true;
-        }
-    }
+    file.read((char*)plants, size * sizeof(PlantModel));
 
-    return content;
+    return {plants, size};
 }
 
 DynamicVector<PlantModel> Actions::loadFromBinary(const std::filesystem::path &path) {
 
     std::ifstream file(path);
-    auto content = Actions::loadFromBinary(file);
+        auto plants = loadFromBinary(file);
     file.close();
 
-    return content;
+    return plants;
 }
 
 void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, std::ofstream &file) {
-    for(PlantModel& plant : plants){
-        plant.saveInBinary(file);
-    }
+    file.write((const char*)plants.getData(), plants.getSize()* sizeof(PlantModel));
 }
 
 void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, const std::filesystem::path &path) {
     std::ofstream file(path);
-    for(PlantModel& plant : plants){
-        plant.saveInBinary(file);
-    }
+    file.write((const char*)plants.getData(), plants.getSize()* sizeof(PlantModel));
     file.close();
 }

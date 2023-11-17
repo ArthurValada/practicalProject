@@ -98,6 +98,8 @@ public:
         }
     }
 
+    DynamicVector(T* data, std::size_t size):_data(data), _size(size),_capacity(size){}
+
     [[nodiscard]] std::size_t getCapacity() {
         return this->_capacity;
     }
@@ -143,6 +145,10 @@ public:
         }
         _size--;
         _shrink();
+    }
+
+    T* getData() const {
+        return this->_data;
     }
 
     Iterator begin() {

@@ -21,6 +21,4 @@ add_executable(
 
         Helpers/Helpers.h
         Helpers/Helpers.cpp
-        Data/Plant/PlantData.h
-        Data/Plant/PlantData.cpp
 )

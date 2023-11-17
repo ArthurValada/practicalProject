@@ -120,24 +120,3 @@ void PlantModel::show() const {
     std::cout<<"Família:"<<_family<<std::endl;
     std::cout<<"Região de origem:"<<_regionOfOrigin<<std::endl;
 }
-
-PlantModel PlantModel::loadFromBinary(std::ifstream &file) {
-    PlantData plantData;
-    file.read((char*)(&plantData), sizeof(plantData));
-
-    PlantModel plantModel = fromPlantData(plantData);
-    return plantModel;
-}
-
-void PlantModel::saveInBinary(std::ofstream &file) const {
-
-    PlantData plantData = this->toPlantData();
-    file.write((char*)&plantData, sizeof(plantData));
-}
-
-PlantModel PlantModel::fromPlantData(const PlantData &plantData) {
-    if(plantData.id != 0){
-        return {plantData.id,plantData.name,plantData.family, plantData.regionOfOrigin, plantData.scientificName,plantData.description};
-    }
-    return {};
-}

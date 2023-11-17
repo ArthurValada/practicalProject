@@ -10,7 +10,6 @@
 #include <iostream>
 
 #include "../ContentModel.h"
-#include "../../Data/Plant/PlantData.h"
 
 class PlantModel : ContentModel<PlantModel> {
 
@@ -50,12 +49,6 @@ public:
     void setRegionOfOrigin(std::string regionOfOrigin);
     void setScientificName(std::string scientificName);
     void setDescription(std::string description);
-
-    [[nodiscard]] PlantData toPlantData() const {
-        return {_id, _name,_family,_scientificName,_regionOfOrigin,_description};
-    }
-
-    static PlantModel fromPlantData(const PlantData& plantData);
 
     bool operator==(const PlantModel& other) const;
     void show() const;
