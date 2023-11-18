@@ -2,10 +2,13 @@
 // Created by arthur on 26/10/23.
 //
 
+///Importaçãpo do arquivo de cabeçalho com as definições dos métodos da classe PlantModel.
 #include "PlantModel.h"
 
-#include <utility>
 
+///Construtor da classe que recebe todos os argumentos a fim de instanciar a clase incializando todos os atributos.
+
+//std::move é utilizado a vim de evitar com que uma string seja copiada em toda instanciação.
 PlantModel::PlantModel(
         int id,
         std::string name,
@@ -21,8 +24,11 @@ PlantModel::PlantModel(
         _regionOfOrigin(std::move(regionOfOrigin)),
         _description(std::move(description)) {}
 
+
+///Implementação do método loadFromCsv.
 PlantModel PlantModel::loadFromCsv(std::ifstream &file) {
 
+    ///As variáveis que contêm os dados a serem inseridos na instância são declarados.
     int id;
     std::string name;
     std::string scientificName;
@@ -30,15 +36,28 @@ PlantModel PlantModel::loadFromCsv(std::ifstream &file) {
     std::string regionOfOrigin;
     std::string description;
 
+    ///Uma variável do tipo char é criada para receber os caracteres que serão descartados.
     char trash;
 
+    ///Se for possível ler o id da planta, a linha é tida como válida.
     if (file >> id) {
+
+        ///A vírgula após o id é descartada.
         file >> trash;
 
+        ///O conteúdo até a próxima vírgula é lido, ele representa o nome da planta.
         std::getline(file, name, ',');
 
+        ///Como o std::getline move o leitor para o ponto seguinte à vírgula, não é necessário descartar a vírgula.
+
+        ///A aspa simples é descartada.
         file>>trash;
+        ///O conteúdo até a próxima aspa simples é obtido e armazenado na variável scientificName, o conteúdo representa
+        ///o nome scientífico da planta.
         std::getline(file, scientificName, '\'');
+
+
+        ///A vírgula subsequente é descartada.
         file>>trash;
 
         std::getline(file, family, ',');
@@ -62,6 +81,7 @@ void PlantModel::saveInCsv(std::ofstream &file) {
              << _description << "\'" << std::endl;
     }
 }
+
 
 int PlantModel::getId() const {
     return this->_id;
@@ -87,10 +107,6 @@ std::string PlantModel::getDescription() const {
     return this->_description;
 }
 
-bool PlantModel::operator==(const PlantModel& other) const {
-    return this->_id == other._id and this->_name == other._name and this->_description == other._description and
-           this->_scientificName == other._scientificName and this->_regionOfOrigin == other._regionOfOrigin;
-}
 
 void PlantModel::setName(std::string newName) {
     this->_name = std::move(newName);
@@ -110,6 +126,12 @@ void PlantModel::setScientificName(std::string scientificName) {
 
 void PlantModel::setDescription(std::string description) {
     this->_description = std::move(description);
+}
+
+
+bool PlantModel::operator==(const PlantModel& other) const {
+    return this->_id == other._id and this->_name == other._name and this->_description == other._description and
+           this->_scientificName == other._scientificName and this->_regionOfOrigin == other._regionOfOrigin;
 }
 
 void PlantModel::show() const {
