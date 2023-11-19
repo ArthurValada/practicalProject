@@ -38,6 +38,7 @@ git clone https://github.com/ArthurValada/practicalProject.git
 ## Requirements
 
 C/C++: 12.2.0
+Cmake minimum version required: 3.26
 
 Recommend: GCC 12.2.0
 
