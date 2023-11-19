@@ -9,9 +9,12 @@
 #include <functional>
 
 namespace Helpers{
+
+    ///Verifica se o caminho passado como argumento é um CSV, se for, executa a função anônima passada como argumento.
     [[maybe_unused]] void _goAheadIfFileIsCsv(const std::filesystem::path& path, const std::function<void(const std::filesystem::path& path)>& function);
 
 
+    ///Verifica se o caminho passado como argumento é um válido, se for, executa a função anônima passada como argumento.
     [[maybe_unused]]void _goAheadIfPathIsValid(const std::filesystem::path& path, const std::function<void(const std::filesystem::path&)>& function);
 }
 
