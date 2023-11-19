@@ -6,7 +6,7 @@
 #include "PlantModel.h"
 
 
-///Construtor da classe que recebe todos os argumentos a fim de instanciar a clase incializando todos os atributos.
+///Construtor da classe que recebe todos os argumentos a fim de instanciar a classe incializando todos os atributos.
 
 //std::move é utilizado a vim de evitar com que uma string seja copiada em toda instanciação.
 PlantModel::PlantModel(
