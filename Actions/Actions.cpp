@@ -198,6 +198,6 @@ void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, std::ofstrea
 
 void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, const std::filesystem::path &path) {
     std::ofstream file(path);
-    file.write((const char*)plants.getData(), plants.getSize()* sizeof(PlantModel));
+    saveInBinary(plants, file);
     file.close();
 }
