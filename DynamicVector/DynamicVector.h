@@ -86,6 +86,8 @@ public:
 
     explicit DynamicVector(std::size_t capacity) : _data(new T[capacity]), _size(capacity), _capacity(capacity) {}
 
+    DynamicVector(T* data, std::size_t size):_data(data), _size(size),_capacity(size){}
+
     DynamicVector(const std::initializer_list<T> &data) : _size(data.size()), _capacity(data.size()),_data{} {
 
         _data = new T[_size];
@@ -97,8 +99,6 @@ public:
             _currentIndex++;
         }
     }
-
-    DynamicVector(T* data, std::size_t size):_data(data), _size(size),_capacity(size){}
 
     [[nodiscard]] std::size_t getCapacity() {
         return this->_capacity;

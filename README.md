@@ -39,6 +39,7 @@ git clone https://github.com/ArthurValada/practicalProject.git
 
 C/C++: 12.2.0
 Cmake minimum version required: 3.26
+Ninja version: 1.10.1
 
 Recommend: GCC 12.2.0
 
@@ -53,6 +54,8 @@ Recommend: GCC 12.2.0
 ```cmake
 cmake --build /path/to/directory/practicalProject/cmake-build-release --target practicalProject -j 6
 ```
+
+Alternativamente, você também pode ver a seção release do reposítório no github
 
 ### Run
 Inside cmake-build-release will be the executable called practicalProject, run it.
