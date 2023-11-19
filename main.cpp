@@ -2,6 +2,13 @@
 
 #include "CliInterface/Cli.h"
 
+
+/// Integrantes do grupo:\n
+/// - Arthur Valadares Campideli\n
+/// - Hugo Prado Lima\n
+/// - Gustavo Henrique Marinho Carvalho\n
+
+
 int main(int argc, char* argv[]) {
 
     Cli::menu();
