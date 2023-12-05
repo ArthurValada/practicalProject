@@ -1,0 +1,7 @@
+# ninja log v5
+0	2517	1700404550982946556	CMakeFiles/practicalProject.dir/main.cpp.o	b2bf1e5a7e52c626
+1	4620	1700404553082951281	CMakeFiles/practicalProject.dir/Actions/Actions.cpp.o	37ee90893febeb9f
+2	3914	1700404552378949694	CMakeFiles/practicalProject.dir/CliInterface/Cli.cpp.o	938706e419c0f18a
+2	2411	1700404550874946314	CMakeFiles/practicalProject.dir/Models/PlantModel/PlantModel.cpp.o	e166c056bd98c9c1
+1	3046	1700404551510947742	CMakeFiles/practicalProject.dir/Helpers/Helpers.cpp.o	690fc496cb614394
+4621	4740	1700404553202951552	practicalProject	548e9048029acff3

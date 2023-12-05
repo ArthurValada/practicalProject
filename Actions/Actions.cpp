@@ -3,7 +3,6 @@
 #include "Actions.h"
 #include "../Helpers/Helpers.h"
 
-// comentei
 // Created by arthur on 06/11/23.
 
 void Actions::_goAhead(PlantModel *plant, const std::function<void(PlantModel *)> &pFunction) {

@@ -8,8 +8,6 @@
 /// - Hugo Prado Lima\n
 /// - Gustavo Henrique Marinho Carvalho\n
 
-// Oi, Arthur
-
 int main(int argc, char* argv[]) {
 
     Cli::menu();
