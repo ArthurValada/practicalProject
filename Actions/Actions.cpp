@@ -1,10 +1,11 @@
-//
-
 #include "Actions.h"
 #include "../Helpers/Helpers.h"
 
 // Created by arthur on 06/11/23.
 
+///Essa função  realiza a ação (pFunction) no PlantModel, mas antes verifica se o ponteiro para esse objeto é nulo. 
+//Se o ponteiro for nulo, uma exceção é lançada; caso contrário, a função de callback é executada. 
+///Essa abordagem é útil para garantir que o objeto PlantModel seja válido antes de executar determinadas operações.
 void Actions::_goAhead(PlantModel *plant, const std::function<void(PlantModel *)> &pFunction) {
     if(plant != nullptr){
         pFunction(plant);
