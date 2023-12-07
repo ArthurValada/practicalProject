@@ -4,11 +4,7 @@
 // Created by arthur on 06/11/23.
 
 ///Essa função  realiza a ação (pFunction) no PlantModel, mas antes verifica se o ponteiro para esse objeto é nulo. 
-<<<<<<< HEAD
-///Se o ponteiro for nulo, uma exceção é lançada; caso contrário, a função de callback é executada. 
-=======
 ///Se o ponteiro for nulo, uma exceção é lançada; caso contrário, a função de callback é executada.
->>>>>>> 468c3d488ee2f1b4e1aa77831e94ce23a0f48fc3
 ///Essa abordagem é útil para garantir que o objeto PlantModel seja válido antes de executar determinadas operações.
 void Actions::_goAhead(PlantModel *plant, const std::function<void(PlantModel *)> &pFunction) {
     if(plant != nullptr){
@@ -204,7 +200,7 @@ void Actions::saveInCsv(const DynamicVector<PlantModel> &plants, const std::file
     }
 }
 
-///Essas duas funções, ambas com o nome loadFromBinary, têm o mesmo propósito geral de ler dados binários de um arquivo.
+///Essas duas funções a seguir, ambas com o nome loadFromBinary, têm o mesmo propósito geral de ler dados binários de um arquivo.
 ///A versão a seguir recebe como argumento o caminho, apenas abre o arquivo cujo caminho fora passado e
 /// passa o arquivo aberto para a sua semelhante
 DynamicVector<PlantModel> Actions::loadFromBinary(std::ifstream &file) {
