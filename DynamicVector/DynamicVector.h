@@ -8,6 +8,8 @@
 #include <cstdlib>
 #include <initializer_list>
 #include <iterator>
+#include <functional>
+#include <utility>
 
 /// Classe responsável por fazer o gerenciamento de alocação dinâmica
 
@@ -68,6 +70,28 @@ private:
         delete[] _data;
 
         _data = newData;
+    }
+
+    [[maybe_unused]] std::size_t _lomutoPartitioning(std::function<bool(const T& first, const T& second)> function,std::size_t begin, std::size_t end){
+        T pivot = this->operator[](end);
+        std::size_t j = begin;
+
+        T aux;
+
+        for(auto i = begin;i<end; i++){
+            if(function(_data[i],pivot)){
+                aux = _data[j];
+                _data[j] = _data[i];
+                _data[i] = aux;
+
+                j++;
+            }
+        }
+
+        aux = _data[j];
+        _data[j] = _data[end];
+        _data[end] = aux;
+        return j;
     }
 
 public:
@@ -220,6 +244,38 @@ public:
     ///Define o iterator end constante da classe a fim de que ela seja iterável mas não alterável.
     Iterator end() const {
         return Iterator(&_data[_size]);
+    }
+
+    T& operator[](std::size_t index) const {
+        return *(this->_data+index*sizeof(T));
+    }
+
+    [[maybe_unused]] void sort(const std::function<bool(const T& first, const T& second)>& function, std::size_t pivotPosition, std::size_t end){
+
+        std::size_t newPivotPosition;
+
+        if(pivotPosition<_size){
+            newPivotPosition = _lomutoPartitioning(function,pivotPosition,end);
+            sort(function,pivotPosition, newPivotPosition-1);
+            sort(function,newPivotPosition+1,end);
+        }
+
+    }
+
+    [[maybe_unused]] std::size_t getPositionWithPointer(const T* pointer) const noexcept {
+        if(_data<pointer and pointer<_data+_size* sizeof(T)){
+            return pointer-_data;
+        }
+
+        return -1;
+    }
+
+    [[maybe_unused]] std::size_t getPositionWithPointerException(const T* pointer) const {
+        if(_data<pointer and pointer<_data+_size* sizeof(T)){
+            return pointer-_data;
+        }
+
+        throw std::invalid_argument("The pointer passed as an argument does not point to an element belonging to the vector.");
     }
 };
 

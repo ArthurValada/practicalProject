@@ -6,6 +6,7 @@
 #define PRACTICALPROJECT_ACTIONS_H
 
 #include <functional>
+
 #include "../DynamicVector/DynamicVector.h"
 #include "../Models/PlantModel/PlantModel.h"
 
@@ -49,14 +50,12 @@ namespace Actions{
 
     ///Função responsável por achar a planta cujo nome seja igual àquele passado como argumento.
     [[maybe_unused]] PlantModel* findByName(const DynamicVector<PlantModel>& plants, const std::string& name);
-
     ///Função responsável por alterar o nome da planta com base no ponteiro passado como argumento.
     [[maybe_unused]] void alterName(PlantModel* plant, const std::string& name);
 
 
     ///Função responsável por achar a planta cuja descrição seja igual àquela passada como argumento.
     [[maybe_unused]] PlantModel* findByDescription(const DynamicVector<PlantModel>& plants, const std::string& description);
-
     ///Função responsável por alterar a descrição da planta com base no ponteiro passado como argumento.
     [[maybe_unused]] void alterDescription(PlantModel* plant, const std::string& description);
 
@@ -78,6 +77,22 @@ namespace Actions{
 
     ///Função responsável por alterar o nome científico da planta com base no ponteiro passado como argumento.
     [[maybe_unused]] void alterScientificName(PlantModel* plant, const std::string& scientificName);
+
+    [[maybe_unused]] void deletePlant(DynamicVector<PlantModel> content, PlantModel* plant, const std::filesystem::path& filePath);
+
+
+    [[maybe_unused]] void sortByIdInAscendingOrder(DynamicVector<PlantModel> content);
+
+    [[maybe_unused]] void sortByIdInDescendingOrder(DynamicVector<PlantModel> content);
+
+
+    [[maybe_unused]] void sortByNameInAscendingOrder(DynamicVector<PlantModel> content);
+
+    [[maybe_unused]] void sortByNameInDescendingOrder(DynamicVector<PlantModel> content);
+
+    [[maybe_unused]] void showInRange(DynamicVector<PlantModel> content, std::size_t begin, std::size_t end);
+
+    [[maybe_unused]] PlantModel* binarySearchBasedOnId(const PlantModel& element,DynamicVector < PlantModel > content, std::size_t begin, std::size_t end);
 }
 
 #endif //PRACTICALPROJECT_ACTIONS_H

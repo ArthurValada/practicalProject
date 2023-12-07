@@ -27,6 +27,8 @@ private:
     ///Atributo que representa o identificador.
     int _id{};
 
+    bool _isActive;
+
     ///Atributo que representa o nome da planta.
     std::string _name;
 
@@ -46,7 +48,7 @@ public:
 
     ///Construtor da classe responsável por inicializar os todos os atributos da classe.
     PlantModel(int id, std::string name, std::string family, std::string regionOfOrigin, std::string scientificName,
-               std::string description);
+               std::string description, bool isActive = true);
 
     ///Construtor padrão da classe, não recebe argumentos.
     PlantModel() = default;
@@ -79,6 +81,10 @@ public:
     ///Método de acesso à descrição da planta.
     [[nodiscard]] std::string getDescription() const;
 
+    [[nodiscard]] bool getIsActive() const {
+        return this->_isActive;
+    }
+
 
     //Uma vez definido, o id não pode ser alterado.
 
@@ -102,6 +108,8 @@ public:
     ///Método de alteração da descrição da planta. Recebe como argumrnto um std::string que representa a nova descrição
     /// da planta. Não possuí retorno, portanto, seu tipo é void.
     void setDescription(std::string description);
+
+    [[maybe_unused]] void setIsActive(bool isActive);
 
     ///Sobrecarga do operador de comparação a fim de que duas instâncias da mesma classe sejam tidas como iguais tendo
     ///em vista a igualdade dos valores de sesu atributos.
