@@ -15,6 +15,9 @@ void Actions::_goAhead(PlantModel *plant, const std::function<void(PlantModel *)
     }
 }
 
+///Esta função lê plantas do arquivo CSV até encontrar o final do arquivo ou uma planta inválida. 
+///As plantas válidas são adicionadas a  DynamicVector, que é então retornado. 
+///Note que a eficácia e a corretude do código dependem da implementação do método loadFromCsv na classe PlantModel.
 DynamicVector<PlantModel> Actions::loadFromCsv(std::ifstream &file) {
     DynamicVector<PlantModel> plants = DynamicVector<PlantModel>();
 
@@ -32,6 +35,8 @@ DynamicVector<PlantModel> Actions::loadFromCsv(std::ifstream &file) {
     return plants;
 }
 
+///Esta função salva os dados das plantas contidas no vetor plants em um arquivo CSV, chamando o método saveInCsv de cada objeto PlantModel. 
+///A verificação file.good() ajuda a garantir que a escrita no arquivo seja feita apenas se o arquivo estiver em um estado válido.
 void Actions::saveInCsv(const DynamicVector<PlantModel> &plants, std::ofstream &file) {
     if(file.good()){
         for(PlantModel& element : plants){
@@ -40,14 +45,23 @@ void Actions::saveInCsv(const DynamicVector<PlantModel> &plants, std::ofstream &
     }
 }
 
-PlantModel *Actions::findById(const DynamicVector<PlantModel> &plants, int id) {
-    for(auto& element: plants){
-        if(element.getId() == id){
-            return &element;
+///A função busca uma planta por ID dentro de um vetor dinâmico (DynamicVector<PlantModel>) 
+///e retorna um ponteiro para a primeira instância encontrada com o ID correspondente. 
+///Se nenhuma planta for encontrada com o ID especificado, a função retorna um ponteiro nulo (nullptr). 
+///Essa função assume que a classe PlantModel possui um método chamado getId que retorna o ID da planta.
+    PlantModel *Actions::findById(const DynamicVector<PlantModel> &plants, int id) {
+        for(auto& element: plants){
+            if(element.getId() == id){
+                return &element;
+            }
         }
+        return nullptr;
     }
-    return nullptr;
-}
+
+///A função busca uma planta pelo nome em um vetor dinâmico (DynamicVector<PlantModel>)
+/// e retorna um ponteiro para a primeira instância encontrada com o nome correspondente. 
+///Se nenhuma planta for encontrada com o nome especificado, a função retorna um ponteiro nulo (nullptr). 
+//A função assume que a classe PlantModel possui um método chamado getName que retorna o nome da planta.
 
 PlantModel *Actions::findByName(const DynamicVector<PlantModel> &plants, const std::string &name) {
     for(auto& element : plants){
