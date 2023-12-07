@@ -55,7 +55,7 @@ Recommend: GCC 12.2.0
 cmake --build /path/to/directory/practicalProject/cmake-build-release --target practicalProject -j 6
 ```
 
-Alternativamente, você também pode ver a seção release do reposítório no github
+Alternatively, you can also see the release section of the repository on github
 
 ### Run
 Inside cmake-build-release will be the executable called practicalProject, run it.

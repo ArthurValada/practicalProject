@@ -4,7 +4,7 @@
 // Created by arthur on 06/11/23.
 
 ///Essa função  realiza a ação (pFunction) no PlantModel, mas antes verifica se o ponteiro para esse objeto é nulo. 
-//Se o ponteiro for nulo, uma exceção é lançada; caso contrário, a função de callback é executada. 
+///Se o ponteiro for nulo, uma exceção é lançada; caso contrário, a função de callback é executada.
 ///Essa abordagem é útil para garantir que o objeto PlantModel seja válido antes de executar determinadas operações.
 void Actions::_goAhead(PlantModel *plant, const std::function<void(PlantModel *)> &pFunction) {
     if(plant != nullptr){
@@ -231,3 +231,84 @@ void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, const std::f
     saveInBinary(plants, file);
     file.close();
 }
+
+void Actions::deletePlant(DynamicVector<PlantModel> content, PlantModel *plant, const std::filesystem::path& filePath) {
+    std::fstream file(filePath);
+    
+        try {
+            auto position = content.getPositionWithPointerException(plant);
+            file.seekg(position*sizeof(PlantModel), std::fstream::beg);
+
+            PlantModel plantModel;
+
+            file.read((char*)&plantModel, sizeof(PlantModel));
+            plantModel.setIsActive(false);
+
+            file.seekg(position*sizeof(PlantModel), std::fstream::beg);
+            file.write((const char*)&plantModel, sizeof(plantModel));
+        }
+        catch (const std::invalid_argument& _){
+            std::cerr<<"O elemento não pertence ao vetor."<<std::endl;
+        }
+
+    file.close();
+}
+
+void Actions::sortByIdInAscendingOrder(DynamicVector<PlantModel> content) {
+    content.sort([](const PlantModel& first, const PlantModel& second){
+        return first.getId()<second.getId();
+    },0, content.getSize());
+}
+
+void Actions::sortByIdInDescendingOrder(DynamicVector<PlantModel> content) {
+    content.sort([](const PlantModel& first, const PlantModel& second){
+        return first.getId()>second.getId();
+    }, 0, content.getSize());
+}
+
+void Actions::sortByNameInAscendingOrder(DynamicVector<PlantModel> content) {
+    content.sort([](const PlantModel& first, const PlantModel& second){
+        return first.getName()<second.getName();
+    },0, content.getSize());
+}
+
+void Actions::sortByNameInDescendingOrder(DynamicVector<PlantModel> content) {
+    content.sort([](const PlantModel& first, const PlantModel& second){
+       return first.getName()>second.getName();
+    },0, content.getSize());
+}
+
+void Actions::showInRange(DynamicVector<PlantModel> content, std::size_t begin, std::size_t end) {
+    for(std::size_t i=begin; i<=end;i++){
+        if(0<=i and i<=content.getSize()){
+            content[i].show();
+        }
+    }
+}
+
+PlantModel* Actions::binarySearchBasedOnId(const PlantModel& element, DynamicVector<PlantModel> content, std::size_t begin, std::size_t end) {
+
+    if(begin<=content.getSize() and end<=content.getSize() and end>begin){
+        sortByIdInAscendingOrder(content);
+
+        auto middle = (begin+end)/2;
+
+        if(content[middle]==element){
+            return &content[middle];
+        }
+        else if(element.getId()<content[middle].getId()){
+            return binarySearchBasedOnId(element,content,begin,middle-1);
+        }
+        else{
+            return binarySearchBasedOnId(element,content, middle+1,end);
+        }
+    }
+    else{
+        return nullptr;
+    }
+
+}
+
+
+
+

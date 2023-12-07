@@ -15,14 +15,16 @@ PlantModel::PlantModel(
         std::string family,
         std::string regionOfOrigin,
         std::string scientificName,
-        std::string description
+        std::string description,
+        bool isActive
 ) :
         _id(id),
         _name(std::move(name)),
         _family(std::move(family)),
         _scientificName(std::move(scientificName)),
         _regionOfOrigin(std::move(regionOfOrigin)),
-        _description(std::move(description)) {}
+        _description(std::move(description)),
+        _isActive(isActive){}
 
 
 ///Implementação do método loadFromCsv.
@@ -197,4 +199,8 @@ void PlantModel::show() const {
     std::cout<<"Nome scientífico:"<<_scientificName<<std::endl;
     std::cout<<"Família:"<<_family<<std::endl;
     std::cout<<"Região de origem:"<<_regionOfOrigin<<std::endl;
+}
+
+void PlantModel::setIsActive(bool isActive) {
+    this->_isActive = isActive;
 }
