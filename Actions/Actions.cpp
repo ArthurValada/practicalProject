@@ -68,7 +68,7 @@ PlantModel *Actions::findByName(const DynamicVector<PlantModel> &plants, const s
 }
 
 ///Função responsável por alterar o nome da planta, cujo ponteiro foi passado como argumento, 
-//de forma a coincidir com o novo nome passado como argumento para essa mesma função.
+///de forma a coincidir com o novo nome passado como argumento para essa mesma função.
 void Actions::alterName(PlantModel *plant, const std::string &name) {
     _goAhead(plant,[&name](PlantModel* plant){
         plant->setName(name);
@@ -112,7 +112,7 @@ void Actions::alterRegionOfOrigin(PlantModel *plant, const std::string &regionOf
     });
 }
 
-/// função percorre o vetor de plantas, compara a família de cada planta com a família fornecida e
+///A função percorre o vetor de plantas, compara a família de cada planta com a família fornecida e
 /// retorna um ponteiro para a primeira planta encontrada com a família correspondente ou nullptr se nenhuma planta for encontrada.
 PlantModel *Actions::findByFamily(const DynamicVector<PlantModel> &plants, const std::string &family) {
     for(auto& element: plants){
@@ -156,7 +156,7 @@ void Actions::alterScientificName(PlantModel *plant, const std::string &scientif
 /// a 1° utilizando um arquivo aberto e a 2° recebendo o caminho do arquivo.
 ///A função a seguir lê plantas de um arquivo CSV especificado pelo caminho fornecido e as armazena em um vetor dinâmico. 
 ///A função inclui verificações de validade do caminho, do conteúdo lido e do tamanho do vetor resultante.
-/// Se o arquivo não contiver uma planta válida, uma exceção é lançada.
+///Se o arquivo não contiver uma planta válida, uma exceção é lançada.
 DynamicVector<PlantModel> Actions::loadFromCsv(const std::filesystem::path& path) {
 
     DynamicVector content = DynamicVector<PlantModel>();
@@ -185,6 +185,8 @@ DynamicVector<PlantModel> Actions::loadFromCsv(const std::filesystem::path& path
     return content;
 }
 
+///Função responsável por salvar os dados em um arquivo csv CSV, recebendo como argumento um arquivo aberto. Em std::ofstream file(filePath);
+///Função responsável por salvar os dados em um arquivo csv CSV, recebendo como argumento o caminho do arquivo. Em std::filesystem::path& filePath
 void Actions::saveInCsv(const DynamicVector<PlantModel> &plants, const std::filesystem::path& filePath) {
     if(exists(filePath.parent_path()) and not exists(filePath) and filePath.extension() == ".csv"){
         std::ofstream file(filePath);
@@ -198,6 +200,9 @@ void Actions::saveInCsv(const DynamicVector<PlantModel> &plants, const std::file
     }
 }
 
+///Essas duas funções a seguir, ambas com o nome loadFromBinary, têm o mesmo propósito geral de ler dados binários de um arquivo.
+///A versão a seguir recebe como argumento o caminho, apenas abre o arquivo cujo caminho fora passado e
+/// passa o arquivo aberto para a sua semelhante
 DynamicVector<PlantModel> Actions::loadFromBinary(std::ifstream &file) {
 
     file.seekg(0,std::ifstream::end);
@@ -221,6 +226,9 @@ DynamicVector<PlantModel> Actions::loadFromBinary(std::ifstream &file) {
     return content;
 }
 
+///Essa, por sua vez, averigua o tamanho do arquivo, calcula o tamanho do vetor a ser alocado com base no tamanho da classe,
+/// gera um vetor, faz a leitura do conteúdo do arquivo para o vetor alocado dinamicamente,
+/// transforma o vetor em um DynamicVector e retorna.
 DynamicVector<PlantModel> Actions::loadFromBinary(const std::filesystem::path &path) {
 
     std::ifstream file(path);
@@ -230,10 +238,13 @@ DynamicVector<PlantModel> Actions::loadFromBinary(const std::filesystem::path &p
     return plants;
 }
 
+///A função converte os dados do DynamicVector para um formato binário e os escreve no arquivo fornecido.
 void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, std::ofstream &file) {
     file.write((const char*)plants.getData(), plants.getSize()* sizeof(PlantModel));
 }
 
+///Cria um novo std::ofstream ao abrir um arquivo com o caminho especificado. Chama a versão da função que recebe um arquivo aberto como parâmetro.
+///Fecha o arquivo automaticamente após concluir a escrita.
 void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, const std::filesystem::path &path) {
     std::ofstream file(path);
     saveInBinary(plants, file);
