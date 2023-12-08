@@ -1,9 +1,11 @@
-//
 // Created by arthur on 06/11/23.
-//
+
 
 #include "Cli.h"
 
+///função que solicita ao usuário um novo nome para uma planta, tenta encontrar a planta no vetor e, se bem-sucedido,
+/// utiliza a função alterName para alterar o nome da planta.
+///Caso a planta não seja encontrada, uma mensagem de erro é exibida.
 [[maybe_unused]] void Cli::alterPlantName(const DynamicVector<PlantModel> &plants) {
     std::string newName;
 
@@ -21,6 +23,8 @@
     }
 }
 
+///Esta função permite ao usuário alterar a descrição de uma planta em um DynamicVector<PlantModel>.
+///A função funciona de maneira muito similar à função alterPlantName.
 [[maybe_unused]] void Cli::alterPlantDescription(const DynamicVector<PlantModel> &plants) {
     std::string newDescription;
 
@@ -39,6 +43,9 @@
     }
 }
 
+///A função solicita ao usuário um novo nome científico para uma planta, tenta encontrar a planta no vetor e, se bem-sucedido,
+/// utiliza a função alterScientificName para alterar o nome científico da planta. 
+///Caso a planta não seja encontrada, uma mensagem de erro é exibida.
 [[maybe_unused]] void Cli::alterPlantScientificName(const DynamicVector<PlantModel> &plants) {
     std::string newScientificName;
 
@@ -57,6 +64,8 @@
     }
 }
 
+//////Função de intermédio ao usuário e à funcionalida para alterar a família da planta.
+///A função funciona de maneira muito similar às outas funções "alter".
 [[maybe_unused]] void Cli::alterPlantFamily(const DynamicVector<PlantModel> &plants) {
     std::string newFamily;
 
@@ -75,6 +84,9 @@
     }
 }
 
+///A função que solicita ao usuário uma nova região de origem para uma planta, tenta encontrar a planta no vetor e, se bem-sucedido,
+/// utiliza a função alterRegionOfOrigin para alterar a região de origem da planta. 
+///Caso a planta não seja encontrada, uma mensagem de erro é exibida.
 [[maybe_unused]] void Cli::alterPlantRegionOfOrigin(const DynamicVector<PlantModel> &plants) {
     std::string newRegionOfOrigin;
 
@@ -93,6 +105,9 @@
     }
 }
 
+///Esta função permite ao usuário salvar as alterações feitas no conjunto de plantas em um arquivo. 
+ ///Com base na presença ou ausência de uma extensão no caminho, decide se deve salvar os dados em formato CSV ou binário. 
+ ///Em caso de caminho inválido, uma mensagem de erro é exibida.
 [[maybe_unused]] void Cli::save(const DynamicVector<PlantModel> &plants) {
 
     std::filesystem::path filePath;
@@ -113,6 +128,9 @@
     }
 }
 
+///Esta função permite ao usuário pesquisar uma planta em um conjunto de plantas por sua região de origem. 
+///A função solicita a região de origem ao usuário e chama a função Actions::findByRegionOfOrigin para realizar a pesquisa. 
+///A função retorna um ponteiro à planta encontrada ou nullptr se nenhuma planta for encontrada.
 [[maybe_unused]] PlantModel *Cli::findByRegionOfOrigin(const DynamicVector<PlantModel> &plants) {
     std::string regionOfOrigin;
 
@@ -122,6 +140,9 @@
     return Actions::findByRegionOfOrigin(plants,regionOfOrigin);
 }
 
+///Esta função permite ao usuário pesquisar uma planta em um conjunto de plantas por sua família. 
+///A função solicita a família ao usuário e chama a função Actions::findByFamily para realizar a pesquisa.
+/// A função retorna um ponteiro à planta encontrada ou nullptr se nenhuma planta for encontrada.
 [[maybe_unused]] PlantModel *Cli::findByFamily(const DynamicVector<PlantModel> &plants) {
     std::string family;
 
@@ -131,6 +152,8 @@
     return Actions::findByFamily(plants, family);
 }
 
+///A função é semelhante às funções findByFamily e findByRegionOfOrigin, mas se diferencia por usar um critério de pesquisa mais preciso: o nome científico.
+/// O nome científico é um identificador único e preciso para cada espécie, enquanto a família e a região de origem podem ser compartilhadas por várias espécies.
 [[maybe_unused]] PlantModel *Cli::findByScientificName(const DynamicVector<PlantModel> &plants) {
     std::string scientificName;
 
@@ -140,6 +163,9 @@
     return Actions::findByScientificName(plants,scientificName);
 }
 
+///Segue-se o principio de busca das funções "Cli::find". 
+///A principal diferença entre esta função e as funções findByFamily, findByRegionOfOrigin, e findByScientificName é 
+//o critério de pesquisa utilizado.
 [[maybe_unused]] PlantModel *Cli::findByDescription(const DynamicVector<PlantModel> &plants) {
     std::string description;
 
@@ -149,6 +175,8 @@
     return Actions::findByDescription(plants, description);
 }
 
+
+///A função Cli::findByName permite ao usuário pesquisar uma planta por seu nome comum.
 [[maybe_unused]] PlantModel *Cli::findByName(const DynamicVector<PlantModel> &plants) {
 
     std::string name;
@@ -159,6 +187,9 @@
     return Actions::findByName(plants,name);
 }
 
+///Esta função permite ao usuário pesquisar uma planta em um conjunto de plantas por seu ID exclusivo.
+///O ID é um identificador único para cada planta no conjunto de dados, 
+///tornando a busca por ID a mais eficiente e precisa entre todas as funções de busca.
 [[maybe_unused]] PlantModel *Cli::findById(const DynamicVector<PlantModel> &plants) {
 
     int id;
@@ -169,6 +200,10 @@
     return Actions::findById(plants,id);
 }
 
+///Esta função permite ao usuário carregar dados de plantas de um arquivo. 
+///A função solicita o caminho do arquivo, verifica a extensão do arquivo e, em seguida,
+/// chama a função Actions::loadFromCsv(filePath) para arquivos CSV ou Actions::loadFromBinary(filePath) para arquivos binários. 
+///A função retorna o objeto DynamicVector<PlantModel> contendo as plantas carregadas do arquivo.
 [[maybe_unused]] DynamicVector<PlantModel> Cli::load() {
 
     std::filesystem::path filePath;
@@ -189,6 +224,10 @@
     return {};
 }
 
+///A função Cli::menu representa um menu interativo que permite realizar várias operações em um conjunto de dados de plantas.
+///Ela implementa o menu principal da aplicação. 
+///O menu permite ao usuário escolher entre as opções de ler, buscar, alterar e salvar plantas. 
+///A função controla o fluxo da aplicação, chamando outras funções para realizar as ações correspondentes e exibindo mensagens para o usuário.
 void Cli::menu() {
     DynamicVector<PlantModel> content = {};
 
@@ -256,6 +295,9 @@ void Cli::menu() {
     }
 }
 
+///Esta função permite ao usuário escolher entre diferentes critérios para buscar uma planta.
+///A função apresenta um menu de opções e, com base na escolha do usuário, chama a função de busca correspondente.
+///A função retorna a planta encontrada ou nullptr se nenhuma planta for encontrada.
 PlantModel *Cli::find(const DynamicVector<PlantModel> &plants) {
 
     std::map<int, const char*> options = {
@@ -308,6 +350,8 @@ PlantModel *Cli::find(const DynamicVector<PlantModel> &plants) {
     return nullptr;
 }
 
+///Esta função permite ao usuário alterar os atributos de uma planta existente. A função exibe um menu de opções,
+/// permite ao usuário escolher o atributo que deseja alterar e, em seguida, chama a função específica para realizar a alteração.
 void Cli::alter(const DynamicVector<PlantModel> &plants) {
     std::cout<<"Escolha a opção pela qual alterar a Planta:"<<std::endl;
 
