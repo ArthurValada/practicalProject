@@ -74,6 +74,22 @@ namespace Cli{
     ///Função para que o usuário escolha com qual subinterface ele vai interagir.
     [[maybe_unused]] void alter(const DynamicVector<PlantModel>& plants);
 
+
+    [[maybe_unused]] void sortByIdInAscendingOrder(DynamicVector<PlantModel> content);
+
+    [[maybe_unused]] void sortByIdInDescendingOrder(DynamicVector<PlantModel> content);
+
+
+    [[maybe_unused]] void sortByNameInAscendingOrder(DynamicVector<PlantModel> content);
+
+    [[maybe_unused]] void sortByNameInDescendingOrder(DynamicVector<PlantModel> content);
+
+
+    [[maybe_unused]] void showInRange(DynamicVector<PlantModel>& content);
+
+
+    [[maybe_unused]] PlantModel* binarySearchBasedOnId(DynamicVector<PlantModel>& content);
+
     ///Centraliza todas as opções que o usuário pode escolher.
     [[maybe_unused]] void menu();
 }

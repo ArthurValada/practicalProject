@@ -210,7 +210,15 @@ DynamicVector<PlantModel> Actions::loadFromBinary(std::ifstream &file) {
 
     file.read((char*)plants, size * sizeof(PlantModel));
 
-    return {plants, size};
+    DynamicVector<PlantModel> content = DynamicVector(plants,size);
+
+    for(auto i = 0; i<=content.getSize();i++){
+        if(!content[i].getIsActive()){
+            content.remove_at(i);
+        }
+    }
+
+    return content;
 }
 
 DynamicVector<PlantModel> Actions::loadFromBinary(const std::filesystem::path &path) {
@@ -232,53 +240,55 @@ void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, const std::f
     file.close();
 }
 
-void Actions::deletePlant(DynamicVector<PlantModel> content, PlantModel *plant, const std::filesystem::path& filePath) {
+void Actions::deletePlant(const PlantModel& plantModel,const std::filesystem::path& filePath) {
+
+    PlantModel data;
+
     std::fstream file(filePath);
-    
-        try {
-            auto position = content.getPositionWithPointerException(plant);
-            file.seekg(position*sizeof(PlantModel), std::fstream::beg);
+    {
+        std::streampos oldPosition = std::ofstream::beg;
+        file.seekg(0, std::ofstream::beg);
+        while(not file.eof()){
+            file.read((char*)&data, sizeof(PlantModel));
+            if(plantModel==data){
+                data.setIsActive(false);
 
-            PlantModel plantModel;
+                file.seekg(oldPosition);
+                file.write((const char*)&data, sizeof(PlantModel));
 
-            file.read((char*)&plantModel, sizeof(PlantModel));
-            plantModel.setIsActive(false);
-
-            file.seekg(position*sizeof(PlantModel), std::fstream::beg);
-            file.write((const char*)&plantModel, sizeof(plantModel));
+                return;
+            }
+            oldPosition = file.tellg();
         }
-        catch (const std::invalid_argument& _){
-            std::cerr<<"O elemento não pertence ao vetor."<<std::endl;
-        }
-
+    }
     file.close();
 }
 
-void Actions::sortByIdInAscendingOrder(DynamicVector<PlantModel> content) {
+void Actions::sortByIdInAscendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
         return first.getId()<second.getId();
     },0, content.getSize());
 }
 
-void Actions::sortByIdInDescendingOrder(DynamicVector<PlantModel> content) {
+void Actions::sortByIdInDescendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
         return first.getId()>second.getId();
     }, 0, content.getSize());
 }
 
-void Actions::sortByNameInAscendingOrder(DynamicVector<PlantModel> content) {
+void Actions::sortByNameInAscendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
         return first.getName()<second.getName();
     },0, content.getSize());
 }
 
-void Actions::sortByNameInDescendingOrder(DynamicVector<PlantModel> content) {
+void Actions::sortByNameInDescendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
        return first.getName()>second.getName();
     },0, content.getSize());
 }
 
-void Actions::showInRange(DynamicVector<PlantModel> content, std::size_t begin, std::size_t end) {
+void Actions::showInRange(DynamicVector<PlantModel>& content, std::size_t begin, std::size_t end) {
     for(std::size_t i=begin; i<=end;i++){
         if(0<=i and i<=content.getSize()){
             content[i].show();
@@ -286,21 +296,21 @@ void Actions::showInRange(DynamicVector<PlantModel> content, std::size_t begin, 
     }
 }
 
-PlantModel* Actions::binarySearchBasedOnId(const PlantModel& element, DynamicVector<PlantModel> content, std::size_t begin, std::size_t end) {
+PlantModel* Actions::binarySearchBasedOnId(const int& id, DynamicVector<PlantModel> content, std::size_t begin, std::size_t end) {
 
     if(begin<=content.getSize() and end<=content.getSize() and end>begin){
         sortByIdInAscendingOrder(content);
 
         auto middle = (begin+end)/2;
 
-        if(content[middle]==element){
+        if(content[middle].getId() == id){
             return &content[middle];
         }
-        else if(element.getId()<content[middle].getId()){
-            return binarySearchBasedOnId(element,content,begin,middle-1);
+        else if(id<content[middle].getId()){
+            return binarySearchBasedOnId(id,content,begin,middle-1);
         }
         else{
-            return binarySearchBasedOnId(element,content, middle+1,end);
+            return binarySearchBasedOnId(id,content, middle+1,end);
         }
     }
     else{
@@ -309,6 +319,26 @@ PlantModel* Actions::binarySearchBasedOnId(const PlantModel& element, DynamicVec
 
 }
 
+PlantModel Actions::directSequentialSearchInTheFile(const PlantModel& plantModel, const std::filesystem::path &path) {
 
+    PlantModel data;
 
+    std::ifstream file(path);
+    {
 
+        file.seekg(0,std::ifstream::end);
+        auto quantity = file.tellg();
+        auto size = quantity / sizeof(PlantModel);
+        file.seekg(0, std::ifstream::beg);
+
+        for(auto i = 0; i<=size;i++){
+            file.read((char*)&data,sizeof(PlantModel));
+            if(plantModel==data){
+                return data;
+            }
+        }
+    }
+    file.close();
+
+    return data;
+}

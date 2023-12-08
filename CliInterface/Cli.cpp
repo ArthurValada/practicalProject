@@ -354,3 +354,52 @@ void Cli::alter(const DynamicVector<PlantModel> &plants) {
         alterPlantDescription(plants);
     }
 }
+
+void Cli::sortByIdInAscendingOrder(DynamicVector<PlantModel> content) {
+    std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma crescente com base no Id."<<std::endl;
+    Actions::sortByIdInAscendingOrder(content);
+}
+
+void Cli::sortByIdInDescendingOrder(DynamicVector<PlantModel> content) {
+    std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma decrescente com base no Id."<<std::endl;
+    Actions::sortByIdInDescendingOrder(content);
+}
+
+void Cli::sortByNameInAscendingOrder(DynamicVector<PlantModel> content) {
+    std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma crescente com base no nome."<<std::endl;
+    Actions::sortByNameInAscendingOrder(content);
+}
+
+void Cli::sortByNameInDescendingOrder(DynamicVector<PlantModel> content) {
+    std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma decrescente com base no nome."<<std::endl;
+    Actions::sortByNameInDescendingOrder(content);
+}
+
+void Cli::showInRange(DynamicVector<PlantModel>& content) {
+
+    std::size_t begin;
+    std::size_t end;
+
+    std::cout<<"Informe o começo do intervalo:";
+    std::cin>>begin;
+
+    std::cout<<"Infore o fim do intervalo:";
+    std::cin>>end;
+
+    Actions::showInRange(content,begin, end);
+}
+
+PlantModel *Cli::binarySearchBasedOnId(DynamicVector<PlantModel> &content) {
+
+    int id;
+
+    std::cout<<"Informe o id da planta:";
+    std::cin>>id;
+
+    return Actions::binarySearchBasedOnId(id,content);
+
+}
+
+
+
+

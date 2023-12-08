@@ -78,21 +78,23 @@ namespace Actions{
     ///Função responsável por alterar o nome científico da planta com base no ponteiro passado como argumento.
     [[maybe_unused]] void alterScientificName(PlantModel* plant, const std::string& scientificName);
 
-    [[maybe_unused]] void deletePlant(DynamicVector<PlantModel> content, PlantModel* plant, const std::filesystem::path& filePath);
+
+    [[maybe_unused]] void sortByIdInAscendingOrder(DynamicVector<PlantModel>& content);
+
+    [[maybe_unused]] void sortByIdInDescendingOrder(DynamicVector<PlantModel>& content);
 
 
-    [[maybe_unused]] void sortByIdInAscendingOrder(DynamicVector<PlantModel> content);
+    [[maybe_unused]] void sortByNameInAscendingOrder(DynamicVector<PlantModel>& content);
 
-    [[maybe_unused]] void sortByIdInDescendingOrder(DynamicVector<PlantModel> content);
+    [[maybe_unused]] void sortByNameInDescendingOrder(DynamicVector<PlantModel>& content);
 
+    [[maybe_unused]] void showInRange(DynamicVector<PlantModel>& content, std::size_t begin, std::size_t end);
 
-    [[maybe_unused]] void sortByNameInAscendingOrder(DynamicVector<PlantModel> content);
+    [[maybe_unused]] PlantModel* binarySearchBasedOnId(const int& id,DynamicVector < PlantModel > content, std::size_t begin, std::size_t end);
 
-    [[maybe_unused]] void sortByNameInDescendingOrder(DynamicVector<PlantModel> content);
+    [[maybe_unused]] PlantModel directSequentialSearchInTheFile(const PlantModel& plantModel, const std::filesystem::path& path);
 
-    [[maybe_unused]] void showInRange(DynamicVector<PlantModel> content, std::size_t begin, std::size_t end);
-
-    [[maybe_unused]] PlantModel* binarySearchBasedOnId(const PlantModel& element,DynamicVector < PlantModel > content, std::size_t begin, std::size_t end);
+    [[maybe_unused]] void deletePlant(const PlantModel& plantModel, const std::filesystem::path &filePath);
 }
 
 #endif //PRACTICALPROJECT_ACTIONS_H
