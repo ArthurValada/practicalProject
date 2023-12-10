@@ -77,6 +77,8 @@ private:
     }
 
 
+    /// Método de particionamento de Lomuto.
+    /// Responsável por dividir o vetor.
     [[maybe_unused]] std::size_t _lomutoPartitioning(std::function<bool(const T& first, const T& second)> function,const std::size_t& begin, const std::size_t& end){
         T pivot = _data[end];
         std::size_t j = begin;
