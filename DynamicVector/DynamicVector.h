@@ -252,10 +252,12 @@ public:
         return Iterator(&_data[_size]);
     }
 
+    /// Sobrecarga do operador [] a fim de poder acessar os elementos do vetor de acordo com o índice.
     T& operator[](std::size_t index) const {
         return _data[index];
     }
 
+    /// Função responsável por ordenar o vetor de acordo com uma função anônima passada.
     [[maybe_unused]] void sort(const std::function<bool(const T& first, const T& second)>& function, const std::size_t& pivotPosition, const std::size_t& end){
 
         std::size_t newPivotPosition;
@@ -272,6 +274,8 @@ public:
 
     }
 
+    /// Função responsável por obter o índice do elemento de acordo com o ponteiro passado como argumento.
+    /// Retorna -1 caso não faça parte.
     [[maybe_unused]] std::size_t getPositionWithPointer(const T* pointer) const noexcept {
         if(_data<pointer and pointer<_data+_size* sizeof(T)){
             return pointer-_data;
@@ -280,6 +284,8 @@ public:
         return -1;
     }
 
+
+    /// Função responsável por obter o índice do elemento com base no vetor passado como argumento. Levanta uma exceção caso não ache.
     [[maybe_unused]] std::size_t getPositionWithPointerException(const T* pointer) const {
         if(_data<pointer and pointer<_data+_size* sizeof(T)){
             return pointer-_data;

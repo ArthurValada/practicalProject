@@ -251,6 +251,8 @@ void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, const std::f
     file.close();
 }
 
+
+///Função que faz a leitura do conteúdo do arquivo e deleta a planta de forma lógica.
 void Actions::deletePlant(int id, const std::filesystem::path& filePath) {
     auto fileContent = Actions::loadFromBinary(filePath);
 
@@ -263,31 +265,36 @@ void Actions::deletePlant(int id, const std::filesystem::path& filePath) {
     Actions::saveInBinary(fileContent, filePath);
 }
 
-
+/// Função que faz a ordenação do conteúdo do vetor alocado dinamicamente de forma ascendente de acordo com o id.
 void Actions::sortByIdInAscendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
         return first.getId()<second.getId();
     },0, content.getSize());
 }
 
+/// Função que faz a ordenação do conteúdo do vetor alocado dinamicamente de forma descendente de acordo com o id.
 void Actions::sortByIdInDescendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
         return first.getId()>second.getId();
     }, 0, content.getSize());
 }
 
+
+/// Função que faz a ordenação do conteúdo do vetor alocado dinamicamente de forma ascendente de acordo com o nome.
 void Actions::sortByNameInAscendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
         return first.getName()<second.getName();
     },0, content.getSize());
 }
 
+/// Função que faz a ordenação do conteúdo do vetor alocado dinamicamente de forma descendente de acordo com o nome.
 void Actions::sortByNameInDescendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
        return first.getName()>second.getName();
     },0, content.getSize());
 }
 
+/// Função responsável por mostrar os dados das plantas conforme o intervalo informado.
 void Actions::showInRange(DynamicVector<PlantModel>& content, std::size_t begin, std::size_t end) {
     for(std::size_t i=begin; i<=end;i++){
         if(0<=i and i<=content.getSize()){
@@ -296,6 +303,7 @@ void Actions::showInRange(DynamicVector<PlantModel>& content, std::size_t begin,
     }
 }
 
+/// Função responsável por fazer a busca binária dentro do vetor com base no id.
 PlantModel* Actions::binarySearchBasedOnId(const int& id, DynamicVector<PlantModel> content, std::size_t begin, std::size_t end) {
 
     if(begin<=content.getSize() and end<=content.getSize() and end>begin){
@@ -319,6 +327,7 @@ PlantModel* Actions::binarySearchBasedOnId(const int& id, DynamicVector<PlantMod
 
 }
 
+/// Função responsável por fazer a busca sequencial diretamente no arquivo.
 const PlantModel& Actions::directSequentialSearchInTheFile(int id, const std::filesystem::path &path) {
 
     auto content = Actions::loadFromBinary(path);
