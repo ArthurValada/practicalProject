@@ -17,6 +17,7 @@
 
 ///Inclusão do cabeçalho de Actions - será usado em Cli.cpp
 #include "../Actions/Actions.h"
+#include "../Helpers/Helpers.h"
 
 namespace Cli{
 
@@ -85,10 +86,15 @@ namespace Cli{
     [[maybe_unused]] void sortByNameInDescendingOrder(DynamicVector<PlantModel> content);
 
 
+    [[maybe_unused]] void sort(DynamicVector<PlantModel>& content);
+
+
     [[maybe_unused]] void showInRange(DynamicVector<PlantModel>& content);
 
 
     [[maybe_unused]] PlantModel* binarySearchBasedOnId(DynamicVector<PlantModel>& content);
+
+    [[maybe_unused]] void deletePlantDirectlyInFile();
 
     ///Centraliza todas as opções que o usuário pode escolher.
     [[maybe_unused]] void menu();

@@ -59,9 +59,13 @@ private:
 
     ///Função responsável por encolher o vetor até o mínimo necessário, isto é, o seu tamanho ocupado.
     void _shrink() {
+        if (_size == _capacity) {
+            return;
+        }
+
         _capacity = _size;
 
-        T *newData = new T[_size];
+        T *newData = new T[_capacity];
 
         for (auto i = 0; i < _size; i++) {
             newData[i] = _data[i];
@@ -72,8 +76,9 @@ private:
         _data = newData;
     }
 
-    [[maybe_unused]] std::size_t _lomutoPartitioning(std::function<bool(const T& first, const T& second)> function,std::size_t begin, std::size_t end){
-        T pivot = this->operator[](end);
+
+    [[maybe_unused]] std::size_t _lomutoPartitioning(std::function<bool(const T& first, const T& second)> function,const std::size_t& begin, const std::size_t& end){
+        T pivot = _data[end];
         std::size_t j = begin;
 
         T aux;
@@ -161,7 +166,7 @@ public:
     }
 
     ///Método get para obter a capacidade do vetor alocado dinamicamente.
-    [[nodiscard]] std::size_t getCapacity() {
+    [[nodiscard]] std::size_t& getCapacity() {
         return this->_capacity;
     }
 
@@ -173,7 +178,7 @@ public:
     }
 
     ///Método get para obter o tamanho do vetor alocado dinamicamente.
-    [[nodiscard]] std::size_t getSize() {
+    [[nodiscard]] std::size_t& getSize() {
         return this->_size;
     }
 
@@ -213,11 +218,12 @@ public:
 
     ///Remove um elemento na posição informada.
     void remove_at(std::size_t index){
-        for(auto i = index;i<_size-1;i++){
-            _data[i]=_data[i+1];
+        for(auto i = index;i<_size;i++){
+            auto temp = _data[i+1];
+            _data[i] = temp;
         }
         _size--;
-        _shrink();
+//        _shrink();
     }
 
     ///Getter para o ponteiro alocado dinamicamente. Retorna o ponteiro constante,
@@ -247,10 +253,10 @@ public:
     }
 
     T& operator[](std::size_t index) const {
-        return *(this->_data+index*sizeof(T));
+        return _data[index];
     }
 
-    [[maybe_unused]] void sort(const std::function<bool(const T& first, const T& second)>& function, std::size_t pivotPosition, std::size_t end){
+    [[maybe_unused]] void sort(const std::function<bool(const T& first, const T& second)>& function, const std::size_t& pivotPosition, const std::size_t& end){
 
         std::size_t newPivotPosition;
 

@@ -19,6 +19,9 @@
 template<class T>
 class ContentModel{
 public:
+
+    ContentModel() = default;
+
     static T loadFromCsv(std::ifstream&);
 
     virtual void saveInCsv(std::ofstream&) = 0;

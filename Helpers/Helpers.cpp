@@ -31,3 +31,11 @@ void Helpers::_goAheadIfPathIsValid(const std::filesystem::path &path, const std
         throw std::invalid_argument("The path is invalid.");
     }
 }
+
+void Helpers::_goAheadIsPathIsBinaryFile(const std::filesystem::path &path, const std::function<void(const std::filesystem::path&)>& function) {
+    if(exists(path.parent_path()) and exists(path) and not path.has_extension()){
+        function(path);
+    } else{
+        throw std::invalid_argument("The path passed as argument isn't a binary file.");
+    }
+}

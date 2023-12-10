@@ -16,6 +16,8 @@ namespace Helpers{
 
     ///Verifica se o caminho passado como argumento é um válido, se for, executa a função anônima passada como argumento.
     [[maybe_unused]]void _goAheadIfPathIsValid(const std::filesystem::path& path, const std::function<void(const std::filesystem::path&)>& function);
+
+    void _goAheadIsPathIsBinaryFile(const std::filesystem::path &path, const std::function<void(const std::filesystem::path &)> &function);
 }
 
 

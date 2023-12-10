@@ -18,7 +18,7 @@ void Actions::_goAhead(PlantModel *plant, const std::function<void(PlantModel *)
 ///A função lê plantas do CSV até encontrar o final do arquivo ou uma planta inválida.
 ///Aceita um arquivo aberto (std::ifstream) como entrada.
 ///As plantas válidas são adicionadas a um DynamicVector, que é então retornado.
-DynamicVector<PlantModel> Actions::loadFromCsv(std::ifstream &file) {
+[[maybe_unused]] DynamicVector<PlantModel> Actions::loadFromCsv(std::ifstream &file) {
     DynamicVector<PlantModel> plants = DynamicVector<PlantModel>();
 
     bool shouldStop = false;
@@ -247,33 +247,43 @@ void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, std::ofstrea
 ///Fecha o arquivo automaticamente após concluir a escrita.
 void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, const std::filesystem::path &path) {
     std::ofstream file(path);
-    saveInBinary(plants, file);
+       saveInBinary(plants, file);
     file.close();
 }
 
-void Actions::deletePlant(const PlantModel& plantModel,const std::filesystem::path& filePath) {
+void Actions::deletePlant(int id, const std::filesystem::path& filePath) {
 
+    std::fstream file(filePath, std::ios::in | std::ios::out | std::ios::binary);
+    if (!file.is_open()) {
+        std::cerr<<"Houve um problema ao abrir o arquivo."<<std::endl;
+        return;
+    }
+
+    file.seekg(0,std::fstream::beg);
+
+    bool shouldStop = false;
     PlantModel data;
 
-    std::fstream file(filePath);
+    std::streampos oldPosition = file.tellg();
     {
-        std::streampos oldPosition = std::ofstream::beg;
-        file.seekg(0, std::ofstream::beg);
-        while(not file.eof()){
-            file.read((char*)&data, sizeof(PlantModel));
-            if(plantModel==data){
+        while (not shouldStop and file.read((char *) &data, sizeof(PlantModel))) {
+            if (id == data.getId()) {
                 data.setIsActive(false);
 
                 file.seekg(oldPosition);
-                file.write((const char*)&data, sizeof(PlantModel));
+                if (!file.write((const char *) &data, sizeof(PlantModel))) {
+                    std::cerr << "Houve um problema ao escrever no arquivo." << std::endl;
+                }
 
-                return;
+                shouldStop = true;
             }
             oldPosition = file.tellg();
         }
     }
+
     file.close();
 }
+
 
 void Actions::sortByIdInAscendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){

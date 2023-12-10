@@ -237,12 +237,23 @@ void Cli::menu() {
     auto saveOption = "Salvar";
     auto exitOption = "Sair";
 
+    auto deleteDirectOnFile = "Deletar diretamente no arquivo";
+    auto sortText = "Ordenar";
+    auto showInRangeText = "Mostrar intervalo";
+    auto binarySearchBasedInId = "Busca binária baseada no id";
+
+
+
     std::map<int, const char *> options = {
-            {1,readOption},
-            {2,findOption},
-            {3,alterOption},
+            {1, readOption},
+            {2, findOption},
+            {3, alterOption},
             {4, saveOption},
             {5, exitOption},
+            {6, deleteDirectOnFile},
+            {7, sortText},
+            {8, showInRangeText},
+            {9, binarySearchBasedInId}
     };
 
     auto outerShouldStop = false;
@@ -289,8 +300,16 @@ void Cli::menu() {
             alter(content);
         } else if (choseOption == 4) {
             save(content);
-        } else {
+        } else if(choseOption == 5){
             outerShouldStop = true;
+        } else if(choseOption == 6){
+            deletePlantDirectlyInFile();
+        } else if(choseOption == 7){
+            sort(content);
+        } else if(choseOption == 8){
+            showInRange(content);
+        } else{
+            binarySearchBasedOnId(content);
         }
     }
 }
@@ -399,27 +418,27 @@ void Cli::alter(const DynamicVector<PlantModel> &plants) {
     }
 }
 
-void Cli::sortByIdInAscendingOrder(DynamicVector<PlantModel> content) {
+[[maybe_unused]] void Cli::sortByIdInAscendingOrder(DynamicVector<PlantModel> content) {
     std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma crescente com base no Id."<<std::endl;
     Actions::sortByIdInAscendingOrder(content);
 }
 
-void Cli::sortByIdInDescendingOrder(DynamicVector<PlantModel> content) {
+[[maybe_unused]] void Cli::sortByIdInDescendingOrder(DynamicVector<PlantModel> content) {
     std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma decrescente com base no Id."<<std::endl;
     Actions::sortByIdInDescendingOrder(content);
 }
 
-void Cli::sortByNameInAscendingOrder(DynamicVector<PlantModel> content) {
+[[maybe_unused]] void Cli::sortByNameInAscendingOrder(DynamicVector<PlantModel> content) {
     std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma crescente com base no nome."<<std::endl;
     Actions::sortByNameInAscendingOrder(content);
 }
 
-void Cli::sortByNameInDescendingOrder(DynamicVector<PlantModel> content) {
+[[maybe_unused]] void Cli::sortByNameInDescendingOrder(DynamicVector<PlantModel> content) {
     std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma decrescente com base no nome."<<std::endl;
     Actions::sortByNameInDescendingOrder(content);
 }
 
-void Cli::showInRange(DynamicVector<PlantModel>& content) {
+[[maybe_unused]] void Cli::showInRange(DynamicVector<PlantModel>& content) {
 
     std::size_t begin;
     std::size_t end;
@@ -433,15 +452,82 @@ void Cli::showInRange(DynamicVector<PlantModel>& content) {
     Actions::showInRange(content,begin, end);
 }
 
-PlantModel *Cli::binarySearchBasedOnId(DynamicVector<PlantModel> &content) {
+[[maybe_unused]] PlantModel *Cli::binarySearchBasedOnId(DynamicVector<PlantModel> &content) {
 
     int id;
 
     std::cout<<"Informe o id da planta:";
     std::cin>>id;
 
-    return Actions::binarySearchBasedOnId(id,content);
+    return Actions::binarySearchBasedOnId(id,content, 0, content.getSize());
 
+}
+
+void Cli::sort(DynamicVector<PlantModel> &content) {
+    const char* sortByIdInAscendingOrder = "Ordenar por ID de forma crescente";
+    const char* sortByIdInDescendingOrder = "Ordenar por ID de forma decrescente";
+    const char* sortByNameInAscendingOrder = "Ordenar por nome de forma crescente";
+    const char* sortByNameInDescendingOrder = "Ordenar por nome de forma decrescente";
+
+    std::map<int, const char*> options ={
+            {1,sortByIdInAscendingOrder},
+            {2,sortByIdInDescendingOrder},
+            {3,sortByNameInAscendingOrder},
+            {4,sortByNameInDescendingOrder}
+    };
+
+    bool shouldStop = false;
+
+    int selectedOption;
+    while(not shouldStop){
+
+        for(auto element : options){
+            std::cout<<element.first<<"."<<element.second<<";"<<std::endl;
+        }
+        std::cout<<"Informe o número da opção de sua escolha:";
+        std::cin>>selectedOption;
+
+        if(1<=selectedOption and selectedOption<=4){
+            shouldStop = true;
+        }
+        else{
+            std::cerr<<"Opção inválida, tente novamente."<<std::endl;
+        }
+    }
+
+    if(selectedOption == 1){
+        Actions::sortByIdInAscendingOrder(content);
+    }
+    else if(selectedOption == 2){
+        Actions::sortByIdInDescendingOrder(content);
+    }
+    else if(selectedOption == 3){
+        Actions::sortByNameInAscendingOrder(content);
+    }
+    else{
+        Actions::sortByNameInDescendingOrder(content);
+    }
+}
+
+void Cli::deletePlantDirectlyInFile() {
+    std::filesystem::path filePath;
+
+    std::cout<<"Informe o caminho do arquivo binário:";
+    std::cin>>filePath;
+    try {
+        Helpers::_goAheadIsPathIsBinaryFile(filePath, [](const std::filesystem::path &filePath) {
+
+            int id;
+
+            std::cout << "Informe o id da planta para que possamos deletá-la diretamente no arquivo:";
+            std::cin >> id;
+
+            Actions::deletePlant(id, filePath);
+        });
+    }
+    catch(const std::invalid_argument& _){
+        std::cerr<<"O caminho informado é inválido."<<std::endl;
+    }
 }
 
 

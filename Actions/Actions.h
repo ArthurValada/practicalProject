@@ -17,7 +17,7 @@ namespace Actions{
 
 
     ///Função responsável por carregar os dados do CSV, recebendo como argumento um arguivo aberto.
-    [[maybe_unused]] DynamicVector<PlantModel> loadFromCsv(std::ifstream& file);
+    [[maybe_unused]] [[maybe_unused]] DynamicVector<PlantModel> loadFromCsv(std::ifstream& file);
 
     ///Função responsável por carregar os dados do CSV, recebendo como argumento o caminho do arquivo.
     [[maybe_unused]] DynamicVector<PlantModel> loadFromCsv(const std::filesystem::path&);
@@ -94,7 +94,7 @@ namespace Actions{
 
     [[maybe_unused]] PlantModel directSequentialSearchInTheFile(const PlantModel& plantModel, const std::filesystem::path& path);
 
-    [[maybe_unused]] void deletePlant(const PlantModel& plantModel, const std::filesystem::path &filePath);
+    [[maybe_unused]] void deletePlant(int id, const std::filesystem::path &filePath);
 }
 
 #endif //PRACTICALPROJECT_ACTIONS_H

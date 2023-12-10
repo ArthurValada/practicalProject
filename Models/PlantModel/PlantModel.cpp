@@ -81,7 +81,7 @@ PlantModel PlantModel::loadFromCsv(std::ifstream &file) {
         file.ignore();
 
         ///O objeto é montado e retornado.
-        return {id, name, family, regionOfOrigin, scientificName, description};
+        return {id, name, family, regionOfOrigin, scientificName, description, true};
     }
 
     ///Caso não seja possível ler o id, um objeto vazio é retornado.
@@ -203,4 +203,21 @@ void PlantModel::show() const {
 
 void PlantModel::setIsActive(bool isActive) {
     this->_isActive = isActive;
+}
+
+PlantModel &PlantModel::operator=(const PlantModel &other) {
+    if(this != &other){
+        this->_id = other._id;
+        this->_name = other._name;
+        this->_scientificName = other._scientificName;
+        this->_family = other._family;
+        this->_regionOfOrigin = other._regionOfOrigin;
+        this->_description = other._description;
+        this->_isActive = other._isActive;
+    }
+    return *this;
+}
+
+bool PlantModel::getIsActive() const {
+    return this->_isActive;
 }

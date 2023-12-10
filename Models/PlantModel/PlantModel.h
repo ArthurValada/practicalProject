@@ -27,7 +27,7 @@ private:
     ///Atributo que representa o identificador.
     int _id{};
 
-    bool _isActive;
+    bool _isActive{};
 
     ///Atributo que representa o nome da planta.
     std::string _name;
@@ -81,9 +81,7 @@ public:
     ///Método de acesso à descrição da planta.
     [[nodiscard]] std::string getDescription() const;
 
-    [[nodiscard]] bool getIsActive() const {
-        return this->_isActive;
-    }
+    [[nodiscard]] bool getIsActive() const;
 
 
     //Uma vez definido, o id não pode ser alterado.
@@ -114,6 +112,8 @@ public:
     ///Sobrecarga do operador de comparação a fim de que duas instâncias da mesma classe sejam tidas como iguais tendo
     ///em vista a igualdade dos valores de sesu atributos.
     bool operator==(const PlantModel& other) const;
+
+    PlantModel& operator=(const PlantModel& other);
 
     ///Método responsável por mostrar a classe, seus atributos, na saída padrão.
     void show() const;
