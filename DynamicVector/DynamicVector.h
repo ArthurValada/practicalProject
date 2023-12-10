@@ -246,10 +246,17 @@ public:
         return Iterator(&_data[_size]);
     }
 
+/// COMENTARIOS APÓS A ADIÇÃO DO ARTHUR
+
+    ///Este operador de indexação permite acessar um elemento específico do vetor por meio de seu índice. 
+    ///O operador retorna uma referência ao elemento, permitindo a modificação direta do valor do elemento.
     T& operator[](std::size_t index) const {
         return *(this->_data+index*sizeof(T));
     }
 
+    ///Esta função implementa o algoritmo de ordenação QuickSort de forma recursiva. 
+    ///Ela utiliza uma função de comparação para determinar a ordem dos elementos e uma função de partição para dividir o vetor em subvetores menores. 
+    ///A função chama a si mesma recursivamente para ordenar os subvetores até que todos os elementos estejam ordenados.
     [[maybe_unused]] void sort(const std::function<bool(const T& first, const T& second)>& function, std::size_t pivotPosition, std::size_t end){
 
         std::size_t newPivotPosition;
@@ -262,6 +269,8 @@ public:
 
     }
 
+    ///Esta função permite ao usuário obter o índice de um elemento do vetor dado o seu ponteiro. 
+    ///Ela verifica se o ponteiro está dentro dos limites do vetor e, se estiver, calcula e retorna o índice correspondente.
     [[maybe_unused]] std::size_t getPositionWithPointer(const T* pointer) const noexcept {
         if(_data<pointer and pointer<_data+_size* sizeof(T)){
             return pointer-_data;
@@ -270,6 +279,8 @@ public:
         return -1;
     }
 
+    ///Esta função é semelhante à função getPositionWithPointer, mas lança uma exceção std::invalid_argument se o ponteiro
+    /// não apontar para um elemento válido dentro do vetor.
     [[maybe_unused]] std::size_t getPositionWithPointerException(const T* pointer) const {
         if(_data<pointer and pointer<_data+_size* sizeof(T)){
             return pointer-_data;
