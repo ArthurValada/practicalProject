@@ -260,10 +260,14 @@ public:
 
         std::size_t newPivotPosition;
 
-        if(pivotPosition<_size){
+        if(pivotPosition<_size and 0<=pivotPosition and 0<end){
             newPivotPosition = _lomutoPartitioning(function,pivotPosition,end);
-            sort(function,pivotPosition, newPivotPosition-1);
-            sort(function,newPivotPosition+1,end);
+            if(newPivotPosition>0 and newPivotPosition>pivotPosition){
+                sort(function,pivotPosition, newPivotPosition-1);
+            }
+            if(newPivotPosition<end){
+                sort(function,newPivotPosition+1,end);
+            }
         }
 
     }

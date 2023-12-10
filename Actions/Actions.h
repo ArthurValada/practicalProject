@@ -92,7 +92,7 @@ namespace Actions{
 
     [[maybe_unused]] PlantModel* binarySearchBasedOnId(const int& id,DynamicVector < PlantModel > content, std::size_t begin, std::size_t end);
 
-    [[maybe_unused]] PlantModel directSequentialSearchInTheFile(const PlantModel& plantModel, const std::filesystem::path& path);
+    [[maybe_unused]] const PlantModel& directSequentialSearchInTheFile(int id, const std::filesystem::path& path);
 
     [[maybe_unused]] void deletePlant(int id, const std::filesystem::path &filePath);
 }

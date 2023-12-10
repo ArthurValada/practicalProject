@@ -96,6 +96,8 @@ namespace Cli{
 
     [[maybe_unused]] void deletePlantDirectlyInFile();
 
+    [[maybe_unused]] void directSequentialSearchInFile();
+
     ///Centraliza todas as opções que o usuário pode escolher.
     [[maybe_unused]] void menu();
 }

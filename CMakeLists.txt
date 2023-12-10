@@ -22,5 +22,3 @@ add_executable(
         Helpers/Helpers.h
         Helpers/Helpers.cpp
 )
-
-target_compile_options(practicalProject PRIVATE -Wl,--stack,10000000)

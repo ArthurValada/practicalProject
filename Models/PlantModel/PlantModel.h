@@ -113,7 +113,7 @@ public:
     ///em vista a igualdade dos valores de sesu atributos.
     bool operator==(const PlantModel& other) const;
 
-    PlantModel& operator=(const PlantModel& other);
+    PlantModel& operator=(PlantModel other);
 
     ///Método responsável por mostrar a classe, seus atributos, na saída padrão.
     void show() const;

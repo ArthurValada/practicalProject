@@ -241,19 +241,21 @@ void Cli::menu() {
     auto sortText = "Ordenar";
     auto showInRangeText = "Mostrar intervalo";
     auto binarySearchBasedInId = "Busca binária baseada no id";
+    auto sequentialSearchDirectOnFile = "Busca sequencial diretamente no arquivo";
 
 
 
     std::map<int, const char *> options = {
-            {1, readOption},
-            {2, findOption},
-            {3, alterOption},
-            {4, saveOption},
-            {5, exitOption},
-            {6, deleteDirectOnFile},
-            {7, sortText},
-            {8, showInRangeText},
-            {9, binarySearchBasedInId}
+            {1,  readOption},
+            {2,  findOption},
+            {3,  alterOption},
+            {4,  saveOption},
+            {5,  exitOption},
+            {6,  deleteDirectOnFile},
+            {7,  sortText},
+            {8,  showInRangeText},
+            {9,  sequentialSearchDirectOnFile},
+            {10, binarySearchBasedInId}
     };
 
     auto outerShouldStop = false;
@@ -308,6 +310,8 @@ void Cli::menu() {
             sort(content);
         } else if(choseOption == 8){
             showInRange(content);
+        } else if(choseOption == 9){
+            directSequentialSearchInFile();
         } else{
             binarySearchBasedOnId(content);
         }
@@ -530,6 +534,33 @@ void Cli::deletePlantDirectlyInFile() {
     }
 }
 
+void Cli::directSequentialSearchInFile() {
 
+    std::filesystem::path filePath;
 
+    std::cout<<"Informe o caminho do arquivo binário:";
+    std::cin>>filePath;
 
+    try {
+        Helpers::_goAheadIsPathIsBinaryFile(filePath, [](const auto &filePath) {
+
+            int id;
+
+            std::cout<<"Informe o id da Planta:";
+            std::cin>>id;
+
+            PlantModel contentFind = Actions::directSequentialSearchInTheFile(id, filePath);
+
+            if(contentFind == PlantModel()){
+                std::cerr<<"Não foi possível achar a planta com o id informado."<<std::endl;
+            }
+            else{
+                std::cout<<"A planta foi achada. Os dados são:"<<std::endl;
+                contentFind.show();
+            }
+        });
+    }
+    catch(const std::invalid_argument& _){
+        std::cerr<<"O caminho passado como argumento é inválido."<<std::endl;
+    }
+}

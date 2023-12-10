@@ -252,36 +252,15 @@ void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, const std::f
 }
 
 void Actions::deletePlant(int id, const std::filesystem::path& filePath) {
+    auto fileContent = Actions::loadFromBinary(filePath);
 
-    std::fstream file(filePath, std::ios::in | std::ios::out | std::ios::binary);
-    if (!file.is_open()) {
-        std::cerr<<"Houve um problema ao abrir o arquivo."<<std::endl;
-        return;
-    }
-
-    file.seekg(0,std::fstream::beg);
-
-    bool shouldStop = false;
-    PlantModel data;
-
-    std::streampos oldPosition = file.tellg();
-    {
-        while (not shouldStop and file.read((char *) &data, sizeof(PlantModel))) {
-            if (id == data.getId()) {
-                data.setIsActive(false);
-
-                file.seekg(oldPosition);
-                if (!file.write((const char *) &data, sizeof(PlantModel))) {
-                    std::cerr << "Houve um problema ao escrever no arquivo." << std::endl;
-                }
-
-                shouldStop = true;
-            }
-            oldPosition = file.tellg();
+    for(auto& element : fileContent){
+        if(element.getId() == id){
+            element.setIsActive(false);
         }
     }
 
-    file.close();
+    Actions::saveInBinary(fileContent, filePath);
 }
 
 
@@ -340,26 +319,9 @@ PlantModel* Actions::binarySearchBasedOnId(const int& id, DynamicVector<PlantMod
 
 }
 
-PlantModel Actions::directSequentialSearchInTheFile(const PlantModel& plantModel, const std::filesystem::path &path) {
+const PlantModel& Actions::directSequentialSearchInTheFile(int id, const std::filesystem::path &path) {
 
-    PlantModel data;
+    auto content = Actions::loadFromBinary(path);
 
-    std::ifstream file(path);
-    {
-
-        file.seekg(0,std::ifstream::end);
-        auto quantity = file.tellg();
-        auto size = quantity / sizeof(PlantModel);
-        file.seekg(0, std::ifstream::beg);
-
-        for(auto i = 0; i<=size;i++){
-            file.read((char*)&data,sizeof(PlantModel));
-            if(plantModel==data){
-                return data;
-            }
-        }
-    }
-    file.close();
-
-    return data;
+    return (*Actions::findById(content,id));
 }

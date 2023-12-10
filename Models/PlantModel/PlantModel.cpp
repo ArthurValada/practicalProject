@@ -205,14 +205,14 @@ void PlantModel::setIsActive(bool isActive) {
     this->_isActive = isActive;
 }
 
-PlantModel &PlantModel::operator=(const PlantModel &other) {
+PlantModel &PlantModel::operator=(PlantModel other) {
     if(this != &other){
         this->_id = other._id;
-        this->_name = other._name;
-        this->_scientificName = other._scientificName;
-        this->_family = other._family;
-        this->_regionOfOrigin = other._regionOfOrigin;
-        this->_description = other._description;
+        this->_name = std::move(other._name);
+        this->_scientificName = std::move(other._scientificName);
+        this->_family = std::move(other._family);
+        this->_regionOfOrigin = std::move(other._regionOfOrigin);
+        this->_description = std::move(other._description);
         this->_isActive = other._isActive;
     }
     return *this;
