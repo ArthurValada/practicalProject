@@ -251,6 +251,12 @@ void Actions::saveInBinary(const DynamicVector<PlantModel> &plants, const std::f
     file.close();
 }
 
+//Comentarios dps da adição do Arthur de codigos e funções no diretório:
+
+
+///A função tem como objetivo desativar um registro de planta em um arquivo binário, representado pelo modelo de planta fornecido (plantModel).
+///O código abre o arquivo especificado, percorre seus registros em busca de uma correspondência com o modelo fornecido
+/// e, quando encontrada, marca a planta como inativa no arquivo. 
 void Actions::deletePlant(const PlantModel& plantModel,const std::filesystem::path& filePath) {
 
     PlantModel data;
@@ -275,30 +281,39 @@ void Actions::deletePlant(const PlantModel& plantModel,const std::filesystem::pa
     file.close();
 }
 
+///Esta função ordena a lista de plantas em ordem crescente de ID. A função utiliza o método
+/// sort do objeto DynamicVector<PlantModel> com uma função de comparação customizada para comparar os IDs das plantas.
 void Actions::sortByIdInAscendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
         return first.getId()<second.getId();
     },0, content.getSize());
 }
 
+///Esta função ordena a lista de plantas em ordem decrescente de ID. 
 void Actions::sortByIdInDescendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
         return first.getId()>second.getId();
     }, 0, content.getSize());
 }
 
+///Esta função ordena a lista de plantas em ordem crescente de nome. A função utiliza o método 
+/// sort do objeto DynamicVector<PlantModel> com uma função de comparação customizada para comparar os nomes das plantas.
 void Actions::sortByNameInAscendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
         return first.getName()<second.getName();
     },0, content.getSize());
 }
 
+///Esta função ordena a lista de plantas em ordem decrescente de nome.
 void Actions::sortByNameInDescendingOrder(DynamicVector<PlantModel>& content) {
     content.sort([](const PlantModel& first, const PlantModel& second){
        return first.getName()>second.getName();
     },0, content.getSize());
 }
 
+///A função tem como propósito exibir os modelos de planta contidos em um vetor dinâmico dentro de um intervalo especificado
+/// pelos índices begin e end. O loop percorre os índices do intervalo, verificando se estão dentro dos limites válidos do vetor, 
+//// e em seguida, chama o método show para exibir as informações do modelo de planta correspondente. 
 void Actions::showInRange(DynamicVector<PlantModel>& content, std::size_t begin, std::size_t end) {
     for(std::size_t i=begin; i<=end;i++){
         if(0<=i and i<=content.getSize()){
@@ -307,6 +322,9 @@ void Actions::showInRange(DynamicVector<PlantModel>& content, std::size_t begin,
     }
 }
 
+///Esta função implementa o algoritmo de busca binária para encontrar uma planta em um vetor ordenado por ID. 
+///A função verifica os limites, ordena o vetor, compara IDs e chama recursivamente a si mesma para reduzir a faixa de busca até 
+/// encontrar a planta ou determinar que ela não existe.
 PlantModel* Actions::binarySearchBasedOnId(const int& id, DynamicVector<PlantModel> content, std::size_t begin, std::size_t end) {
 
     if(begin<=content.getSize() and end<=content.getSize() and end>begin){
@@ -330,6 +348,10 @@ PlantModel* Actions::binarySearchBasedOnId(const int& id, DynamicVector<PlantMod
 
 }
 
+///Esta função realiza uma busca sequencial em um arquivo de dados para encontrar uma planta específica. 
+///A função determina o tamanho do arquivo, posiciona o ponteiro de leitura no início, lê cada registro do arquivo e compara 
+/// com a planta procurada. Se a planta for encontrada, a função retorna o objeto PlantModel correspondente. 
+///Caso contrário, a função retorna um objeto PlantModel vazio.
 PlantModel Actions::directSequentialSearchInTheFile(const PlantModel& plantModel, const std::filesystem::path &path) {
 
     PlantModel data;
