@@ -399,26 +399,43 @@ void Cli::alter(const DynamicVector<PlantModel> &plants) {
     }
 }
 
+// COMENTARIOS APÓS A ADIÇÃO DO ARTHUR
+
+
+/// A função imprime uma mensagem para o usuário informando que o conteúdo está sendo ordenado e, em seguida,
+/// chama a função Actions::sortByIdInAscendingOrder() para realizar a ordenação de um vetor DynamicVector<PlantModel> por ID em ordem crescente.
+/// Esse processo visa organizar os dados de plantas de maneira ascendente conforme os IDs associados a cada planta.
 void Cli::sortByIdInAscendingOrder(DynamicVector<PlantModel> content) {
     std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma crescente com base no Id."<<std::endl;
     Actions::sortByIdInAscendingOrder(content);
 }
 
+/// Esta função é semelhante à função Cli::sortByIdInAscendingOrder(),
+/// com a diferença de que a função chama a função Actions::sortByIdInDescendingOrder() para realizar a ordenação em ordem decrescente.
 void Cli::sortByIdInDescendingOrder(DynamicVector<PlantModel> content) {
     std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma decrescente com base no Id."<<std::endl;
     Actions::sortByIdInDescendingOrder(content);
 }
 
+///Esta função ordena o conteúdo de um vetor DynamicVector<PlantModel> por nome em ordem crescente. 
+///A função imprime uma mensagem para o usuário informando que o conteúdo está sendo ordenado e, em seguida,
+/// chama a função Actions::sortByNameInAscendingOrder() para realizar a ordenação.
 void Cli::sortByNameInAscendingOrder(DynamicVector<PlantModel> content) {
     std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma crescente com base no nome."<<std::endl;
     Actions::sortByNameInAscendingOrder(content);
 }
 
+///Esta função é semelhante à função Cli::sortByNameInAscendingOrder(),
+/// com a diferença de que a função chama a função Actions::sortByNameInDescendingOrder() para realizar
+/// a ordenação por nome em ordem decrescente.
 void Cli::sortByNameInDescendingOrder(DynamicVector<PlantModel> content) {
     std::cout<<"O conteúdo do arquivo, que fora carregado na memória está a ser ordenado de forma decrescente com base no nome."<<std::endl;
     Actions::sortByNameInDescendingOrder(content);
 }
 
+///Esta função permite que o usuário especifique um intervalo de índices e exibe as informações das plantas correspondentes no vetor content.
+/// A função solicita ao usuário os valores do índice inicial e final, verifica se os valores são válidos e,
+/// em seguida, chama a função Actions::showInRange para exibir as plantas.
 void Cli::showInRange(DynamicVector<PlantModel>& content) {
 
     std::size_t begin;
@@ -433,6 +450,9 @@ void Cli::showInRange(DynamicVector<PlantModel>& content) {
     Actions::showInRange(content,begin, end);
 }
 
+///Esta função permite ao usuário especificar o ID de uma planta e realiza uma busca binária no 
+///vetor content para encontrar a planta correspondente. A função solicita ao usuário o ID, chama a função Actions::binarySearchBasedOnId
+/// para realizar a busca e retorna o ponteiro para o objeto PlantModel encontrado ou nullptr se a planta não for encontrada.
 PlantModel *Cli::binarySearchBasedOnId(DynamicVector<PlantModel> &content) {
 
     int id;
