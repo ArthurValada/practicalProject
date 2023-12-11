@@ -8,6 +8,8 @@
 #include <cstdlib>
 #include <initializer_list>
 #include <iterator>
+#include <functional>
+#include <utility>
 
 /// Classe responsável por fazer o gerenciamento de alocação dinâmica
 
@@ -57,9 +59,13 @@ private:
 
     ///Função responsável por encolher o vetor até o mínimo necessário, isto é, o seu tamanho ocupado.
     void _shrink() {
+        if (_size == _capacity) {
+            return;
+        }
+
         _capacity = _size;
 
-        T *newData = new T[_size];
+        T *newData = new T[_capacity];
 
         for (auto i = 0; i < _size; i++) {
             newData[i] = _data[i];
@@ -68,6 +74,31 @@ private:
         delete[] _data;
 
         _data = newData;
+    }
+
+
+    /// Método de particionamento de Lomuto.
+    /// Responsável por dividir o vetor.
+    [[maybe_unused]] std::size_t _lomutoPartitioning(std::function<bool(const T& first, const T& second)> function,const std::size_t& begin, const std::size_t& end){
+        T pivot = _data[end];
+        std::size_t j = begin;
+
+        T aux;
+
+        for(auto i = begin;i<end; i++){
+            if(function(_data[i],pivot)){
+                aux = _data[j];
+                _data[j] = _data[i];
+                _data[i] = aux;
+
+                j++;
+            }
+        }
+
+        aux = _data[j];
+        _data[j] = _data[end];
+        _data[end] = aux;
+        return j;
     }
 
 public:
@@ -137,7 +168,7 @@ public:
     }
 
     ///Método get para obter a capacidade do vetor alocado dinamicamente.
-    [[nodiscard]] std::size_t getCapacity() {
+    [[nodiscard]] std::size_t& getCapacity() {
         return this->_capacity;
     }
 
@@ -149,7 +180,7 @@ public:
     }
 
     ///Método get para obter o tamanho do vetor alocado dinamicamente.
-    [[nodiscard]] std::size_t getSize() {
+    [[nodiscard]] std::size_t& getSize() {
         return this->_size;
     }
 
@@ -189,11 +220,12 @@ public:
 
     ///Remove um elemento na posição informada.
     void remove_at(std::size_t index){
-        for(auto i = index;i<_size-1;i++){
-            _data[i]=_data[i+1];
+        for(auto i = index;i<_size;i++){
+            auto temp = _data[i+1];
+            _data[i] = temp;
         }
         _size--;
-        _shrink();
+//        _shrink();
     }
 
     ///Getter para o ponteiro alocado dinamicamente. Retorna o ponteiro constante,
@@ -220,6 +252,48 @@ public:
     ///Define o iterator end constante da classe a fim de que ela seja iterável mas não alterável.
     Iterator end() const {
         return Iterator(&_data[_size]);
+    }
+
+    /// Sobrecarga do operador [] a fim de poder acessar os elementos do vetor de acordo com o índice.
+    T& operator[](std::size_t index) const {
+        return _data[index];
+    }
+
+    /// Função responsável por ordenar o vetor de acordo com uma função anônima passada.
+    [[maybe_unused]] void sort(const std::function<bool(const T& first, const T& second)>& function, const std::size_t& pivotPosition, const std::size_t& end){
+
+        std::size_t newPivotPosition;
+
+        if(pivotPosition<_size and 0<=pivotPosition and 0<end){
+            newPivotPosition = _lomutoPartitioning(function,pivotPosition,end);
+            if(newPivotPosition>0 and newPivotPosition>pivotPosition){
+                sort(function,pivotPosition, newPivotPosition-1);
+            }
+            if(newPivotPosition<end){
+                sort(function,newPivotPosition+1,end);
+            }
+        }
+
+    }
+
+    /// Função responsável por obter o índice do elemento de acordo com o ponteiro passado como argumento.
+    /// Retorna -1 caso não faça parte.
+    [[maybe_unused]] std::size_t getPositionWithPointer(const T* pointer) const noexcept {
+        if(_data<pointer and pointer<_data+_size* sizeof(T)){
+            return pointer-_data;
+        }
+
+        return -1;
+    }
+
+
+    /// Função responsável por obter o índice do elemento com base no vetor passado como argumento. Levanta uma exceção caso não ache.
+    [[maybe_unused]] std::size_t getPositionWithPointerException(const T* pointer) const {
+        if(_data<pointer and pointer<_data+_size* sizeof(T)){
+            return pointer-_data;
+        }
+
+        throw std::invalid_argument("The pointer passed as an argument does not point to an element belonging to the vector.");
     }
 };
 

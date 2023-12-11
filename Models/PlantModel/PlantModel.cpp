@@ -15,14 +15,16 @@ PlantModel::PlantModel(
         std::string family,
         std::string regionOfOrigin,
         std::string scientificName,
-        std::string description
+        std::string description,
+        bool isActive
 ) :
         _id(id),
         _name(std::move(name)),
         _family(std::move(family)),
         _scientificName(std::move(scientificName)),
         _regionOfOrigin(std::move(regionOfOrigin)),
-        _description(std::move(description)) {}
+        _description(std::move(description)),
+        _isActive(isActive){}
 
 
 ///Implementação do método loadFromCsv.
@@ -79,7 +81,7 @@ PlantModel PlantModel::loadFromCsv(std::ifstream &file) {
         file.ignore();
 
         ///O objeto é montado e retornado.
-        return {id, name, family, regionOfOrigin, scientificName, description};
+        return {id, name, family, regionOfOrigin, scientificName, description, true};
     }
 
     ///Caso não seja possível ler o id, um objeto vazio é retornado.
@@ -197,4 +199,25 @@ void PlantModel::show() const {
     std::cout<<"Nome scientífico:"<<_scientificName<<std::endl;
     std::cout<<"Família:"<<_family<<std::endl;
     std::cout<<"Região de origem:"<<_regionOfOrigin<<std::endl;
+}
+
+void PlantModel::setIsActive(bool isActive) {
+    this->_isActive = isActive;
+}
+
+PlantModel &PlantModel::operator=(PlantModel other) {
+    if(this != &other){
+        this->_id = other._id;
+        this->_name = std::move(other._name);
+        this->_scientificName = std::move(other._scientificName);
+        this->_family = std::move(other._family);
+        this->_regionOfOrigin = std::move(other._regionOfOrigin);
+        this->_description = std::move(other._description);
+        this->_isActive = other._isActive;
+    }
+    return *this;
+}
+
+bool PlantModel::getIsActive() const {
+    return this->_isActive;
 }

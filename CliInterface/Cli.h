@@ -17,6 +17,7 @@
 
 ///Inclusão do cabeçalho de Actions - será usado em Cli.cpp
 #include "../Actions/Actions.h"
+#include "../Helpers/Helpers.h"
 
 namespace Cli{
 
@@ -73,6 +74,35 @@ namespace Cli{
 
     ///Função para que o usuário escolha com qual subinterface ele vai interagir.
     [[maybe_unused]] void alter(const DynamicVector<PlantModel>& plants);
+
+    /// Função de interface ao usuário para ordenar o vetor alocado dinamicamente de forma ascendente de acordo com o id.
+    [[maybe_unused]] void sortByIdInAscendingOrder(DynamicVector<PlantModel> content);
+
+    /// Função de interface ao usuário para ordenar o vetor alocado dinamicamente de forma descendente de acordo com o id.
+    [[maybe_unused]] void sortByIdInDescendingOrder(DynamicVector<PlantModel> content);
+
+
+    /// Função de interface ao usuário para ordenar o vetor alocado dinamicamente de forma ascendente de acordo com o nome.
+    [[maybe_unused]] void sortByNameInAscendingOrder(DynamicVector<PlantModel> content);
+
+    // Função de interface ao usuário para ordenar o vetor alocado dinamicamente de forma descendente de acordo com o nome.
+    [[maybe_unused]] void sortByNameInDescendingOrder(DynamicVector<PlantModel> content);
+
+    /// Função responsável por fazer o intermédio entre o usuário e as possibilidades de ordenação disponíveis.
+    [[maybe_unused]] void sort(DynamicVector<PlantModel>& content);
+
+    /// Função responsável por fazer o intermédio entre o o usuário e a ação de imprimir um intervalo do vetor.
+    [[maybe_unused]] void showInRange(DynamicVector<PlantModel>& content);
+
+    /// Função responsável por servir de intermédio ao usuário e a funcionalidade de busca binária baseada no id.
+    [[maybe_unused]] PlantModel* binarySearchBasedOnId(DynamicVector<PlantModel>& content);
+
+    /// Função feita com a intuito de servir de intermédio ao usuário e a funcionalidade de apagar um a determinada
+    /// planta de forma a fazê-lo diretamente no arquivo.
+    [[maybe_unused]] void deletePlantDirectlyInFile();
+
+    /// Função que faz a busca sequencial diretamente no arquivo.
+    [[maybe_unused]] void directSequentialSearchInFile();
 
     ///Centraliza todas as opções que o usuário pode escolher.
     [[maybe_unused]] void menu();

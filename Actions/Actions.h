@@ -6,6 +6,7 @@
 #define PRACTICALPROJECT_ACTIONS_H
 
 #include <functional>
+
 #include "../DynamicVector/DynamicVector.h"
 #include "../Models/PlantModel/PlantModel.h"
 
@@ -16,7 +17,7 @@ namespace Actions{
 
 
     ///Função responsável por carregar os dados do CSV, recebendo como argumento um arguivo aberto.
-    [[maybe_unused]] DynamicVector<PlantModel> loadFromCsv(std::ifstream& file);
+    [[maybe_unused]] [[maybe_unused]] DynamicVector<PlantModel> loadFromCsv(std::ifstream& file);
 
     ///Função responsável por carregar os dados do CSV, recebendo como argumento o caminho do arquivo.
     [[maybe_unused]] DynamicVector<PlantModel> loadFromCsv(const std::filesystem::path&);
@@ -49,14 +50,12 @@ namespace Actions{
 
     ///Função responsável por achar a planta cujo nome seja igual àquele passado como argumento.
     [[maybe_unused]] PlantModel* findByName(const DynamicVector<PlantModel>& plants, const std::string& name);
-
     ///Função responsável por alterar o nome da planta com base no ponteiro passado como argumento.
     [[maybe_unused]] void alterName(PlantModel* plant, const std::string& name);
 
 
     ///Função responsável por achar a planta cuja descrição seja igual àquela passada como argumento.
     [[maybe_unused]] PlantModel* findByDescription(const DynamicVector<PlantModel>& plants, const std::string& description);
-
     ///Função responsável por alterar a descrição da planta com base no ponteiro passado como argumento.
     [[maybe_unused]] void alterDescription(PlantModel* plant, const std::string& description);
 
@@ -78,6 +77,31 @@ namespace Actions{
 
     ///Função responsável por alterar o nome científico da planta com base no ponteiro passado como argumento.
     [[maybe_unused]] void alterScientificName(PlantModel* plant, const std::string& scientificName);
+
+    /// Função que faz a ordenação do conteúdo do vetor alocado dinamicamente de forma ascendente de acordo com o id.
+    [[maybe_unused]] void sortByIdInAscendingOrder(DynamicVector<PlantModel>& content);
+
+    ///Função que faz a ordenação do conteúdo do vetor alocado dinamicamente de forma descendente de acordo com o id.
+    [[maybe_unused]] void sortByIdInDescendingOrder(DynamicVector<PlantModel>& content);
+
+
+    /// Função que faz a ordenação do conteúdo do vetor alocado dinamicamente de forma ascendente de acordo com o nome.
+    [[maybe_unused]] void sortByNameInAscendingOrder(DynamicVector<PlantModel>& content);
+
+    /// Função que faz a ordenação do conteúdo do vetor alocado dinamicamente de forma descendente de acordo com o nome.
+    [[maybe_unused]] void sortByNameInDescendingOrder(DynamicVector<PlantModel>& content);
+
+    /// Função responsável por mostrar os dados das plantas conforme o intervalo informado.
+    [[maybe_unused]] void showInRange(DynamicVector<PlantModel>& content, std::size_t begin, std::size_t end);
+
+    /// Função responsável por fazer a busca binária dentro do vetor com base no id.
+    [[maybe_unused]] PlantModel* binarySearchBasedOnId(const int& id,DynamicVector < PlantModel > content, std::size_t begin, std::size_t end);
+
+    /// Função responsável por fazer a busca sequencial diretamente no arquivo.
+    [[maybe_unused]] const PlantModel& directSequentialSearchInTheFile(int id, const std::filesystem::path& path);
+
+    /// Função responsável por apagar, diretamente no arquivo, de forma lógica, a planta
+    [[maybe_unused]] void deletePlant(int id, const std::filesystem::path &filePath);
 }
 
 #endif //PRACTICALPROJECT_ACTIONS_H
