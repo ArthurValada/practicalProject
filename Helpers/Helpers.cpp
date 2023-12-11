@@ -32,7 +32,7 @@ void Helpers::_goAheadIfPathIsValid(const std::filesystem::path &path, const std
     }
 }
 
-void Helpers::_goAheadIsPathIsBinaryFile(const std::filesystem::path &path, const std::function<void(const std::filesystem::path&)>& function) {
+void Helpers::_goAheadIfPathIsBinaryFile(const std::filesystem::path &path, const std::function<void(const std::filesystem::path&)>& function) {
     if(exists(path.parent_path()) and exists(path) and not path.has_extension()){
         function(path);
     } else{

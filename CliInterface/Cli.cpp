@@ -519,7 +519,7 @@ void Cli::deletePlantDirectlyInFile() {
     std::cout<<"Informe o caminho do arquivo binário:";
     std::cin>>filePath;
     try {
-        Helpers::_goAheadIsPathIsBinaryFile(filePath, [](const std::filesystem::path &filePath) {
+        Helpers::_goAheadIfPathIsBinaryFile(filePath, [](const std::filesystem::path &filePath) {
 
             int id;
 
@@ -542,20 +542,19 @@ void Cli::directSequentialSearchInFile() {
     std::cin>>filePath;
 
     try {
-        Helpers::_goAheadIsPathIsBinaryFile(filePath, [](const auto &filePath) {
+        Helpers::_goAheadIfPathIsBinaryFile(filePath, [](const auto &filePath) {
 
             int id;
 
-            std::cout<<"Informe o id da Planta:";
-            std::cin>>id;
+            std::cout << "Informe o id da Planta:";
+            std::cin >> id;
 
             PlantModel contentFind = Actions::directSequentialSearchInTheFile(id, filePath);
 
-            if(contentFind == PlantModel()){
-                std::cerr<<"Não foi possível achar a planta com o id informado."<<std::endl;
-            }
-            else{
-                std::cout<<"A planta foi achada. Os dados são:"<<std::endl;
+            if (contentFind == PlantModel()) {
+                std::cerr << "Não foi possível achar a planta com o id informado." << std::endl;
+            } else {
+                std::cout << "A planta foi achada. Os dados são:" << std::endl;
                 contentFind.show();
             }
         });
